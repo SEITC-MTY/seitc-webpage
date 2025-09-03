@@ -16,5 +16,5 @@ jobs:
 
       - name: Push to personal repo
         run: |
-          git remote add mirror ${{ secrets.PERSONAL_REPO }}
+          git remote add mirror https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/Ale-Coeto/seitc-copy.git
           git push mirror main --force
