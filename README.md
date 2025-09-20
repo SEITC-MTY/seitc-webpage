@@ -4,6 +4,11 @@
 
 How to run:
 
+Make sure to have dependencies installed:
+```bash
+npm install
+```
+
 ```bash
 npm run dev
 ```

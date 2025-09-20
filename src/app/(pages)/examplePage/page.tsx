@@ -1,4 +1,4 @@
-import ExampleComponent from "seitc/app/_components/examplePageComponents/exampleComponent"
+import ExampleComponent from "seitc/app/_components/examplePage/exampleComponent"
 
 const ExamplePage = () => {
     return (
