@@ -3,7 +3,7 @@ name: Sync Forked Repo
 on:
   push:
     branches:
-      - sync   
+      - main   
 
 env:
   TARGET_ACCOUNT: seitcMty
