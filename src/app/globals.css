@@ -17,3 +17,22 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center font-semibold text-white transition shadow-md rounded-xl;
+    height: 48px; /* ajusta según tu diseño */
+    padding-left: 24px;
+    padding-right: 24px;
+    background: linear-gradient(
+      135deg,
+      hsl(217 73% 16%),
+      hsl(210 69% 27%),
+      hsl(206 69% 44%)
+    );
+  }
+
+  .btn:hover {
+    opacity: 0.9;
+  }
+}

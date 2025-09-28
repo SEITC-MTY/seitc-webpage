@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 import { useSlides } from "seitc/app/data/main/slides";
+import { GradientButton, GlassButton } from "seitc/app/_components/UI/Button";
 
 const HeroSection = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -70,7 +71,13 @@ const HeroSection = () => {
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4">
-                            {/* Button Components */}
+                        <div className="flex flex-col sm:flex-row gap-4">
+                            {/* Sección Sobre Nosotros */}
+                            <GradientButton href="#sobre-nosotros">Conoce más</GradientButton>
+
+                            {/* Lleva a otra sección (ej. unirte) */}
+                            <GlassButton href="#unete">Únete a SEITC</GlassButton>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -123,6 +130,7 @@ const HeroSection = () => {
                 <ChevronDown className="w-5 h-5 animate-bounce" />
             </div>
         </section>
+        
     );
 };
 
