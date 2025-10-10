@@ -1,12 +1,12 @@
 import React from 'react';
-import SocialMediaIcon from './SocialMediaIcon';
+import { FaTiktok , FaInstagram, FaLinkedin, FaFacebook } from 'react-icons/fa';
 
 const Footer = () => {
   const socialLinks = [
-    { header: 'facebook', content: 'https://facebook.com' },
-    { header: 'twitter', content: 'https://twitter.com' },
-    { header: 'linkedin', content: 'https://linkedin.com' },
-    { header: 'instagram', content: 'https://instagram.com' },
+    { header: 'facebook', content: 'https://www.facebook.com/share/1D97vBEgLj/?mibextid=wwXIfr' },
+    { header: 'tiktok', content: 'https://www.tiktok.com/@seitc.mty' },
+    { header: 'linkedin', content: 'https://www.linkedin.com/company/seitc/posts/?feedView=all' },
+    { header: 'instagram', content: 'https://www.instagram.com/seitc.mty/' },
   ];
 
   return (
@@ -37,11 +37,14 @@ const Footer = () => {
             <h3 className="text-xl font-bold">Follow Us</h3>
             <ul className="flex space-x-4">
               {socialLinks.map((link) => (
-                <SocialMediaIcon
-                  key={link.header}
-                  header={link.header}
-                  content={link.content}
-                />
+                <li key={link.header}>
+                  <a href={link.content} target="_blank" rel="noopener noreferrer">
+                    {link.header === 'facebook' && <FaFacebook size={24} />}
+                    {link.header === 'tiktok' && <FaTiktok size={24} />}
+                    {link.header === 'linkedin' && <FaLinkedin size={24} />}
+                    {link.header === 'instagram' && <FaInstagram size={24} />}
+                  </a>
+                </li>
               ))}
             </ul>
           </div>
