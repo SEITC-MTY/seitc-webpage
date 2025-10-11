@@ -27,7 +27,9 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-xl font-bold">Quick Links</h3>
             <ul className="space-y-2">
-              <li><a href="/about" className="hover:opacity-75">About Us</a></li>
+              {/* href usa # porque esta en la misma pagina
+                  cambiar # -> / si es necesario */}
+              <li><a href="#aboutUs" className="hover:opacity-75">About Us</a></li>  
               <li><a href="/services" className="hover:opacity-75">Services</a></li>
               <li><a href="/contact" className="hover:opacity-75">Contact</a></li>
             </ul>
