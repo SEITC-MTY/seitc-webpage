@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { FaTiktok, FaInstagram, FaLinkedin, FaFacebook } from 'react-icons/fa';
 
 interface SocialMediaIconProps {
   header: string;
@@ -7,21 +7,36 @@ interface SocialMediaIconProps {
 }
 
 const SocialMediaIcon: React.FC<SocialMediaIconProps> = ({ header, content }) => {
+  const getIcon = () => {
+    switch (header) {
+      case 'facebook':
+        return <FaFacebook size={24} />;
+      case 'tiktok':
+        return <FaTiktok size={24} />;
+      case 'linkedin':
+        return <FaLinkedin size={24} />;
+      case 'instagram':
+        return <FaInstagram size={24} />;
+      default:
+        return null;
+    }
+  };
+
   return (
-    <li className="hover:opacity-75 transition-opacity">
+    <li>
       <a 
-        className="footer__social-media-icon text-white text-xl p-2" 
         href={content} 
         target="_blank" 
-        rel="noreferrer"
+        rel="noopener noreferrer"
+        className="hover:opacity-75 transition-opacity"
       >
-        <i className={`fa fa-${header}`}></i>
+        {getIcon()}
       </a>
     </li>
   );
 };
 
-SocialMediaIcon.propTypes = {
+/* SocialMediaIcon.propTypes = {
     header: PropTypes.string,
     content: PropTypes.string,
 };
@@ -29,6 +44,6 @@ SocialMediaIcon.propTypes = {
 SocialMediaIcon.propTypes.defaultProps = {
     header: '',
     content: '',
-};
+}; */ 
 
 export default SocialMediaIcon;

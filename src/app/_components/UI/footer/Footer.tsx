@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaTiktok , FaInstagram, FaLinkedin, FaFacebook } from 'react-icons/fa';
+import SocialMediaIcon from './SocialMediaIcon';
 
 const Footer = () => {
   const socialLinks = [
@@ -38,14 +38,11 @@ const Footer = () => {
             <h3 className="text-xl font-bold">Follow Us</h3>
             <ul className="flex space-x-4">
               {socialLinks.map((link) => (
-                <li key={link.header}>
-                  <a href={link.content} target="_blank" rel="noopener noreferrer">
-                    {link.header === 'facebook' && <FaFacebook size={24} />}
-                    {link.header === 'tiktok' && <FaTiktok size={24} />}
-                    {link.header === 'linkedin' && <FaLinkedin size={24} />}
-                    {link.header === 'instagram' && <FaInstagram size={24} />}
-                  </a>
-                </li>
+                <SocialMediaIcon
+                  key={link.header}
+                  header={link.header}
+                  content={link.content}
+                />
               ))}
             </ul>
           </div>
