@@ -5,7 +5,9 @@ export default function Home() {
   return (
     <div>
       <HeroSection />
-      <AboutUs />
+      <section id="aboutUs">
+        <AboutUs />
+      </section>
       <div className="p-10">
         More content
       </div>
