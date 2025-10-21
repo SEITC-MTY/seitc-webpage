@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,7 +9,7 @@ const Navbar = () => {
   const navLinks = [
     { name: 'INTEGRANTES', href: '#integrantes' },
     { name: 'MERCHANDISING', href: '#merchandising' },
-    { name: 'EVENTOS', href: '#eventos' },
+    { name: 'EVENTOS', href: 'events' },
   ];
 
   return (
