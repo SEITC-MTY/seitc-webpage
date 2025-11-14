@@ -2,7 +2,7 @@ name: Auto-update README
 
 on:
   workflow_run:
-    workflows: ["CI Pipeline"]
+    workflows: ["ci"]
     types:
       - completed
 
