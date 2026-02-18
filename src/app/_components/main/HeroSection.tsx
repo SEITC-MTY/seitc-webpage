@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
+import Image from "next/image";
 import { useSlides } from "seitc/app/data/main/slides";
 import { GradientButton, GlassButton } from "seitc/app/_components/UI/Button";
 
@@ -16,11 +17,6 @@ const HeroSection = () => {
         return () => clearInterval(timer);
     }, [slides.length]);
 
-    const scrollToNext = () => {
-        const element = document.getElementById("sobre-nosotros");
-        element?.scrollIntoView({ behavior: "smooth" });
-    };
-
     return (
         //a
         <section className="relative h-screen overflow-hidden">
@@ -32,14 +28,13 @@ const HeroSection = () => {
                         className={`absolute inset-0 transition-opacity duration-1000 ${currentSlide === index ? "opacity-100" : "opacity-0"
                             }`}
                     >
-                        <img
+                        <Image
                             src={slide.image}
                             alt={slide.title}
-                            className="w-full h-full object-cover scale-105"
-                            onError={(e) => {
-                                console.error('Error loading image:', slide.image);
-                                e.currentTarget.style.display = 'none';
-                            }}
+                            fill
+                            sizes="100vw"
+                            className="object-cover scale-105"
+                            priority={index === 0}
                         />
                         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-800/70 to-transparent" />
                     </div>
