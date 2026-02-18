@@ -77,7 +77,7 @@ const HeroSection = () => {
                             <GradientButton href="#sobre-nosotros">Conoce más</GradientButton>
 
                             {/* Lleva a otra sección (ej. unirte) */}
-                            <GlassButton href="#unete">Únete a SEITC</GlassButton>
+                            <GlassButton href="https://chat.whatsapp.com/Ejj8hsLdqlXAuHBHQ9bJVG">Únete a SEITC</GlassButton>
                             </div>
                         </div>
                     </div>

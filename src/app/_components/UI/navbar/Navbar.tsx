@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,6 +11,7 @@ const Navbar = () => {
     { name: 'INTEGRANTES', href: '#integrantes' },
     { name: 'MERCHANDISING', href: '#merchandising' },
     { name: 'EVENTOS', href: 'events' },
+    { name: 'SEITC CHALLENGE', href: 'events' },
   ];
 
   return (
@@ -19,7 +21,13 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
-              <span className="text-2xl font-bold text-blue-900">{'{'}<span className="text-blue-600">SEITC</span></span>
+              <Image
+                src="/images/Logo.webp"
+                alt="SEITC logo"
+                width={128}
+                height={128}
+                priority
+              />
             </Link>
           </div>
 
@@ -39,7 +47,9 @@ const Navbar = () => {
 
           <div className="hidden md:block">
             <Link
-              href="#unete"
+              href="https://chat.whatsapp.com/Ejj8hsLdqlXAuHBHQ9bJVG"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-blue-900 text-white px-6 py-3 rounded-full font-medium hover:bg-blue-800 transition-colors duration-200 shadow-md hover:shadow-lg"
             >
               Únete a SEITC
@@ -86,7 +96,9 @@ const Navbar = () => {
               </Link>
             ))}
             <Link
-              href="#unete"
+              href="https://chat.whatsapp.com/Ejj8hsLdqlXAuHBHQ9bJVG"
+              target="_blank"
+              rel="noopener noreferrer"
               className="block mx-3 mt-4 text-center bg-blue-900 text-white px-6 py-3 rounded-full font-medium hover:bg-blue-800"
               onClick={() => setIsMenuOpen(false)}
             >

@@ -8,9 +8,11 @@ export default function Home() {
       <section id="aboutUs">
         <AboutUs />
       </section>
+      {/* 
       <div className="p-10">
         More content
       </div>
+      */}
     </div>
   );
 }
