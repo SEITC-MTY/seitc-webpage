@@ -20,6 +20,11 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
+      - name: Test token access
+        run: |
+          curl -H "Authorization: Bearer ${{ secrets.DEPLOY }}" \
+          https://api.github.com/repos/seitcMty/seitc-webpage
+
       - name: Push to deploy repository
         run: |
           git remote add deploy https://x-access-token:${{ secrets.DEPLOY }}@github.com/seitcMty/seitc-webpage.git
