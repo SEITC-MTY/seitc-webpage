@@ -22,7 +22,7 @@ jobs:
 
       - name: Push to deploy repository
         run: |
-          git remote add deploy https://x-access-token:${{ secrets.TOKEN }}@github.com/seitcMty/seitc-webpage.git
+          git remote add deploy https://x-access-token:${{ secrets.DEPLOY }}@github.com/seitcMty/seitc-webpage.git
           git push deploy main --force
           
 # name: Sync Forked Repo
