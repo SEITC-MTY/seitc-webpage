@@ -62,5 +62,4 @@ test
 | --------------- | ------------------------------------------ |
 | Alejandra Coeto | [@Ale-Coeto](https://github.com/Ale-Coeto) | 
 test
-new test
 -->
