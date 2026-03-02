@@ -33,4 +33,6 @@ jobs:
       run: npm run lint
 
     - name: Run build
-      run: npm run build
+      run: |
+        export DATABASE_URL="${{ secrets.DATABASE_URL }}"
+        npm run build 
