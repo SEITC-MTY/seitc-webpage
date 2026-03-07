@@ -34,6 +34,7 @@ interface Evento {
     fechaFin?: string;
     tipo: 'taller' | 'evento' | 'conferencia' | 'competencia' | 'panel' | 'charla' | 'Recruitment';
     estado: 'pasado' | 'proximo';
+    semestre: string;
     descripcion: string | DescripcionCompleja;
     ubicacion: string;
     hora?: string;
@@ -46,6 +47,7 @@ interface Evento {
 
 export default function Events() {
     const [selectedFilter, setSelectedFilter] = useState("todos")
+    const [selectedSemestre, setSelectedSemestre] = useState("AD26")
     const [selectedEvento, setSelectedEvento] = useState<Evento | null>(null)
     // Inicializar AOS
     useEffect(() => {
@@ -82,6 +84,7 @@ export default function Events() {
         fechaFin: "2025-08-29",
         tipo: "conferencia",
         estado: "pasado",
+        semestre: "AD26",
         descripcion: "Una conferencia que ofrece a los estudiantes una experiencia directa con la empresa Bloomberg, mediante una charla interactiva. El evento incluye un espacio de networking donde los asistentes podrán conocer de primera mano las tecnologías que utiliza Bloomberg, las oportunidades laborales disponibles y el perfil profesional que buscan.",
         ubicacion: "Aulas 2, Auditorio de Biblioteca",
         cupos: 120,
@@ -94,6 +97,7 @@ export default function Events() {
         fecha: "2025-09-02",
         tipo: "panel",
         estado: "pasado",
+        semestre: "AD26",
         descripcion: "El panel “Forjando Caminos: Mujeres en Ingeniería” busca visibilizar y celebrar el papel de las mujeres en el ámbito de la ingeniería. A través de un espacio de diálogo y reflexión, ingenieras compartirán sus experiencias, retos y logros, inspirando a las nuevas generaciones a seguir construyendo un futuro más inclusivo e innovador.",
         ubicacion: "Auditorio de Aulas 6 (A6 – 306)",
         hora: "4:00 pm - 6:00 pm",
@@ -107,6 +111,7 @@ export default function Events() {
         fecha: "2025-09-04",
         tipo: "Recruitment",
         estado: "pasado",
+        semestre: "AD26",
         descripcion: {
         texto: "Este evento virtual exclusivo, organizado por Datadog en colaboración con el Tecnológico de Monterrey, está dirigido a estudiantes de Ciencias Computacionales e Ingeniería en Tecnologías Computacionales interesados en iniciar su carrera en Nueva York.",
         bullets: [
@@ -124,6 +129,7 @@ export default function Events() {
         fecha: "2025-09-19",
         tipo: "charla",
         estado: "pasado",
+        semestre: "AD26",
         descripcion: "Una charla con David Celis Martínez, exalumno de Ingeniería en Tecnologías Computacionales y referente en la comunidad tech. Ganador del Swift Student Challenge 2023 de Apple, con dos internships en Uber en el área de ingeniería, y actualmente Software Engineer en Uber en San Francisco. David compartirá cómo fue su camino desde el ITC hasta Silicon Valley: retos, aprendizajes, consejos prácticos y anécdotas únicas de su experiencia en la industria tecnológica global. Además, habrá un espacio de Q&A en vivo, ideal para estudiantes interesados en desarrollo de software, movilidad internacional, y cómo destacar en programas altamente competitivos.",
         ubicacion: "En Linea, Via Zoom",
         cupos: 40,
@@ -136,6 +142,7 @@ export default function Events() {
         fecha: "2025-09-25",
         tipo: "taller",
         estado: "pasado",
+        semestre: "AD26",
         descripcion: "Un taller para optimizar el currículum de estudiantes de Ingeniería en Tecnologías Computacionales, con enfoque en la industria tech y de software, logrando al menos 25 asistentes activos durante una sesión de 2 horas, y brindando retroalimentación personalizada a los participantes que traigan su CV.",
         ubicacion: "Aula de Conferencias",
         cupos: 25,
@@ -148,6 +155,7 @@ export default function Events() {
         fecha: "2025-10-02",
         tipo: "panel",
         estado: "pasado",
+        semestre: "AD26",
         descripcion: "Un evento tipo panel dirigido a estudiantes ITC y de la avenida ICT, el cual tiene como propósito discutir la relevancia de la ética profesional y tecnológica en la industria. A través de casos reales y experiencias compartidas por expertos, se busca generar un diálogo de alto impacto sobre cómo las decisiones que se toman pueden tener un efecto significativo en nuestro entorno.",
         ubicacion: "Sala Novela, Piso 6 - Biblioteca",
         cupos: 35,
@@ -160,14 +168,14 @@ export default function Events() {
         fecha: "2025-12-10",
         tipo: "conferencia",
         estado: "proximo",
+        semestre: "AD26",
         descripcion: "Una conferencia donde estudiantes de ITC que han conseguido internships en empresas reconocidas (nacionales o internacionales), a través de un panel conversacional, con el objetivo de inspirar y orientar a por lo menos 30 estudiantes en su camino hacia prácticas profesionales o internships en la industria tecnológica.",
         ubicacion: "Auditorio de Aulas 6",
         cupos: 30,
         inscritos: 15,
         linkRegistro: ""
     },
-    /*
-    {
+    /*{
         id: 8,
         titulo: "SEITC Challenge",
         fecha: "2025-10-15",
@@ -177,13 +185,19 @@ export default function Events() {
         ubicacion: "Laboratorios de Innovación",
         cupos: 60,
         inscritos: 28,
-    }*/
+        semestre: "AD26",
+    }, */
     ];
 
-    // Filtrar eventos basado en el filtro seleccionado
-    const eventosFiltrados = selectedFilter === "todos" 
-        ? eventos 
-        : eventos.filter(evento => evento.tipo === selectedFilter);
+    // Obtener semestres únicos presentes en los eventos
+    const semestresUnicos = Array.from(new Set(eventos.map(e => e.semestre)));
+
+    // Filtrar eventos basado en ambos filtros
+    const eventosFiltrados = eventos.filter(evento => {
+        const tipoOk = selectedFilter === "todos" || evento.tipo === selectedFilter;
+        const semestreOk = evento.semestre === selectedSemestre;
+        return tipoOk && semestreOk;
+    });
 
     // Función para formatear fecha
     const formatFecha = (fechaStr: string) => {
@@ -282,8 +296,8 @@ export default function Events() {
                     </div>
                 </div>
 
-                {/* Filtros */}
-                <div className="flex flex-wrap justify-center gap-3 mb-12 px-4">
+                {/* Filtros por tipo */}
+                <div className="flex flex-wrap justify-center gap-3 mb-4 px-4">
                     <div className="flex items-center space-x-2 text-white/70">
                         <Filter className="h-4 w-4" />
                         <span className="text-sm font-medium">Filtrar por:</span>
@@ -310,6 +324,39 @@ export default function Events() {
                                 }`}
                             >
                                 {filtro.count}
+                            </Badge>
+                        </Button>
+                    ))}
+                </div>
+
+                {/* Filtros por semestre */}
+                <div className="flex flex-wrap justify-center gap-3 mb-12 px-4">
+                    <div className="flex items-center space-x-2 text-white/70">
+                        <Calendar className="h-4 w-4" />
+                        <span className="text-sm font-medium">Semestre:</span>
+                    </div>
+                    {semestresUnicos.map((sem) => (
+                        <Button
+                            key={sem}
+                            variant={selectedSemestre === sem ? "default" : "outline"}
+                            size="sm"
+                            onClick={() => setSelectedSemestre(sem)}
+                            className={`rounded-2xl transition-all duration-300 ${
+                                selectedSemestre === sem
+                                ? "bg-gradient-primary shadow-glow scale-105 text-white border-2 border-blue-400 shadow-[0_0_20px_rgba(34,211,238,0.6),0_0_40px_rgba(34,211,238,0.4),0_0_60px_rgba(34,211,238,0.2)]"
+                                : "text-blue-600 border-2 border-white/50 hover:bg-blue-600 hover:text-white hover:border-cyan-400 hover:scale-105 hover:shadow-[0_0_20px_rgba(34,211,238,0.6),0_0_40px_rgba(34,211,238,0.4),0_0_60px_rgba(34,211,238,0.2)]"
+                            }`}
+                        >
+                            {sem}
+                            <Badge
+                                variant="secondary"
+                                className={`ml-2 text-xs transition-colors duration-300 ${
+                                    selectedSemestre === sem
+                                    ? "bg-white/20 text-white"
+                                    : "bg-blue-100 text-blue-800"
+                                }`}
+                            >
+                                {eventos.filter(e => e.semestre === sem).length}
                             </Badge>
                         </Button>
                     ))}
