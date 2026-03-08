@@ -47,7 +47,7 @@ interface Evento {
 
 export default function Events() {
     const [selectedFilter, setSelectedFilter] = useState("todos")
-    const [selectedSemestre, setSelectedSemestre] = useState("AD26")
+    const [selectedSemestre, setSelectedSemestre] = useState("FJ26")
     const [selectedEvento, setSelectedEvento] = useState<Evento | null>(null)
     // Inicializar AOS
     useEffect(() => {
@@ -175,17 +175,42 @@ export default function Events() {
         inscritos: 15,
         linkRegistro: ""
     },
-    /*{
+    {
         id: 8,
         titulo: "SEITC Challenge",
-        fecha: "2025-10-15",
+        fecha: "2026-04-10",
         tipo: "competencia",
         estado: "proximo",
         descripcion: "Un hackatón dirigido a estudiantes de Ingeniería, con el objetivo de fomentar la creatividad, la solución de problemas reales y el trabajo en equipo.",
         ubicacion: "Laboratorios de Innovación",
-        cupos: 60,
-        inscritos: 28,
-        semestre: "AD26",
+        cupos: 0,
+        inscritos: 0,
+        semestre: "FJ26",
+    },
+    {
+        id: 9,
+        titulo: "Congreso SEITC",
+        fecha: "2026-04-9",
+        tipo: "conferencia",
+        estado: "proximo",
+        descripcion: "Congreso organizado por SEITC, mas detalles proximamente.",
+        ubicacion: "proximamente",
+        cupos: 0,
+        inscritos: 0,
+        semestre: "FJ26",
+    },
+    /*
+    {
+        id: 10,
+        titulo: "Aniversario ITC",
+        fecha: "2026-04-9",
+        tipo: "conferencia",
+        estado: "proximo",
+        descripcion: "proximamente",
+        ubicacion: "proximamente",
+        cupos: 0,
+        inscritos: 0,
+        semestre: "FJ26",
     }, */
     ];
 
