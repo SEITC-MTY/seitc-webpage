@@ -190,7 +190,7 @@ export default function Events() {
     {
         id: 9,
         titulo: "Congreso SEITC",
-        fecha: "2026-04-9",
+        fecha: "2026-04-09",
         tipo: "conferencia",
         estado: "proximo",
         descripcion: "Congreso organizado por SEITC, mas detalles proximamente.",
@@ -226,7 +226,7 @@ export default function Events() {
 
     // Función para formatear fecha
     const formatFecha = (fechaStr: string) => {
-        const fecha = new Date(fechaStr);
+        const fecha = new Date(fechaStr + "T00:00:00");
         return fecha.toLocaleDateString('es-ES', { 
             weekday: 'long', 
             year: 'numeric', 
@@ -394,8 +394,8 @@ export default function Events() {
                         const align = index % 2 === 0 ? "md:ml-0 md:mr-auto" : "md:ml-auto md:mr-0";
                         const fechaInicio = evento.fecha;
                         const fechaFin = evento.fechaFin;
-                        const fechaObjInicio = fechaInicio ? new Date(fechaInicio) : null;
-                        const fechaObjFin = fechaFin ? new Date(fechaFin) : null;
+                        const fechaObjInicio = fechaInicio ? new Date(fechaInicio + "T00:00:00") : null;
+                        const fechaObjFin = fechaFin ? new Date(fechaFin + "T00:00:00") : null;
 
                         const animation = index % 2 === 0 ? "fade-right" : "fade-left";
                         
