@@ -51,7 +51,7 @@ const paneles: Panel[] = [
     ubicacion: "Campus Monterrey",
     tags: ["Machine Learning", "Artificial Intelligence"],
     descripcion:
-      "Descripción breve del panel. Aquí se explica de qué trata la sesión, cuáles son los temas principales que se abordarán y qué aprenderá el asistente al participar.",
+      "Explora cómo el machine learning y la inteligencia artificial están transformando la industria financiera.",
     ponentes: [
       { nombre: "Gabriel Macias", cargo: "Banregio" },
     ],
@@ -64,7 +64,7 @@ const paneles: Panel[] = [
     ubicacion: "Campus Monterrey",
     tags: ["Data Science", "Artificial Intelligence"],
     descripcion:
-      "Descripción breve del panel. Aquí se explica de qué trata la sesión, cuáles son los temas principales que se abordarán y qué aprenderá el asistente al participar.",
+      "Explora cómo la ciencia de datos y la inteligencia artificial impulsan la innovación, el análisis avanzado y la creación de soluciones basadas en datos.",
     ponentes: [
       { nombre: "Arnulfo Cavazos", cargo: "IBM México" },
     ],
