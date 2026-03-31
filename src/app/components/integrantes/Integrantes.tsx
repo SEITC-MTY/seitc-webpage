@@ -24,7 +24,7 @@ const periodos: Periodo[] = [
       { nombre: "Diego García", puesto: "Presidente" },
       { nombre: "Marcelo Sias", puesto: "Vicepresidente" },
       { nombre: "Emily Castillo", puesto: "Directora de Responsabilidad Social" },
-      { nombre: "Oliver Velázquez", puesto: "Director de Marketing" },
+      { nombre: "Oliver Vazquez", puesto: "Director de Marketing" },
       { nombre: "Barbara Martínez", puesto: "Directora de Finanzas" },
       { nombre: "Alejandra Coeto", puesto: "Directora de Tecnología" },
       { nombre: "Javier Castillo", puesto: "Director de Vinculación" },
@@ -57,7 +57,7 @@ export default function Integrantes() {
     <section className="min-h-screen bg-gradient-to-br from-[#0a0e2e] via-[#0d1a5c] to-[#1a2a7a] pt-28 pb-20 px-4">
       {/* Header */}
       <div className="text-center mb-12">
-        <h1 className="text-5xl md:text-6xl font-extrabold text-white tracking-wide mb-3">
+        <h1 className="text-5xl md:text-6xl font-bold mb-4 text-white">
           INTEGRANTES
         </h1>
         <p className="text-white/70 text-base md:text-lg">
@@ -144,7 +144,7 @@ export default function Integrantes() {
         })}
       </div>
 
-      {/* CTA Card */}
+      {/* Card */}
       <div className="max-w-3xl mx-auto">
         <div className="bg-white/95 rounded-2xl shadow-lg px-8 py-8 flex flex-col items-center text-center">
           <h2 className="text-xl font-bold text-gray-900 mb-1">
