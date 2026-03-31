@@ -3,16 +3,24 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const navLinks = [
-    { name: 'INTEGRANTES', href: '#integrantes' },
+    { name: 'INTEGRANTES', href: '/integrantes' },
     { name: 'MERCHANDISING', href: '#merchandising' },
     { name: 'EVENTOS', href: '/events' },
+    {name: 'CONGRESO SEITC', href: '/congreso'},
     { name: 'SEITC CHALLENGE', href: '/challenge' },
   ];
+
+  const isActive = (href: string) => {
+    if (href.startsWith('#')) return false;
+    return pathname === href;
+  };
 
   return (
     <nav className="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
@@ -33,16 +41,28 @@ const Navbar = () => {
 
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 relative group"
-              >
-                {link.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const active = isActive(link.href);
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className={`font-medium transition-colors duration-200 relative group pb-1 ${
+                    active
+                      ? 'text-blue-600'
+                      : 'text-gray-700 hover:text-blue-600'
+                  }`}
+                >
+                  {link.name}
+                  {/* Underline: always visible if active, animated on hover otherwise */}
+                  <span
+                    className={`absolute bottom-0 left-0 h-0.5 bg-blue-600 transition-all duration-200 ${
+                      active ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}
+                  />
+                </Link>
+              );
+            })}
           </div>
 
           <div className="hidden md:block">
@@ -50,7 +70,7 @@ const Navbar = () => {
               href="https://chat.whatsapp.com/Ejj8hsLdqlXAuHBHQ9bJVG"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-blue-900 text-white px-6 py-3 rounded-full font-medium hover:bg-blue-800 transition-colors duration-200 shadow-md hover:shadow-lg"
+              className="inline-flex items-center gap-2 rounded-2xl px-6 py-3 font-semibold text-white bg-blue-800 shadow-md hover:bg-blue-700 transition-colors"
             >
               Únete a SEITC
             </Link>
@@ -82,24 +102,32 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* Mobile menu */}
       {isMenuOpen && (
         <div className="md:hidden bg-white border-t">
           <div className="px-2 pt-2 pb-3 space-y-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="block px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const active = isActive(link.href);
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className={`block px-3 py-2 rounded-md font-medium transition-colors duration-200 ${
+                    active
+                      ? 'text-blue-600 bg-blue-50 border-l-4 border-blue-600'
+                      : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
             <Link
               href="https://chat.whatsapp.com/Ejj8hsLdqlXAuHBHQ9bJVG"
               target="_blank"
               rel="noopener noreferrer"
-              className="block mx-3 mt-4 text-center bg-blue-900 text-white px-6 py-3 rounded-full font-medium hover:bg-blue-800"
+              className="flex justify-center items-center gap-2 mx-3 mt-4 rounded-2xl px-6 py-3 font-semibold text-white bg-blue-800 shadow-md hover:bg-blue-700 transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
               Únete a SEITC
