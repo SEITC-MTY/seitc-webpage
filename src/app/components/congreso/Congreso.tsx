@@ -106,7 +106,7 @@ const paneles: Panel[] = [
     // Add as many tags are required "Tag 1", "Tag2"...
     tags: ["Edge Computing", "Artificial Intelligence", "Community"],
     descripcion:
-      "Description",
+      "Una sesión enfocada en el ecosistema de NVIDIA, las tecnologías Edge y la experiencia detrás de un reciente hackathon, explorando cómo estas herramientas impulsan la innovación y el desarrollo de soluciones tecnológicas.",
     ponentes: [
       { nombre: "Alberto Muñoz", cargo: "NVIDIA Ambassador" },
     ],
