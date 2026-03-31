@@ -10,8 +10,8 @@ const Navbar = () => {
   const navLinks = [
     { name: 'INTEGRANTES', href: '#integrantes' },
     { name: 'MERCHANDISING', href: '#merchandising' },
-    { name: 'EVENTOS', href: 'events' },
-    { name: 'SEITC CHALLENGE', href: 'events' },
+    { name: 'EVENTOS', href: '/events' },
+    { name: 'SEITC CHALLENGE', href: '/challenge' },
   ];
 
   return (

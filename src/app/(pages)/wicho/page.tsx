@@ -1,8 +1,8 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
 import WichoCard from "seitc/app/components/wicho/card";
+import { Send } from "lucide-react";
 
 type WichoPost = {
     id: string;
@@ -30,9 +30,7 @@ const WichoPage = () => {
         setLoading(true);
         await fetch("/api/wicho-post", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 message: message.trim(),
                 author: author.trim() || undefined,
@@ -50,43 +48,76 @@ const WichoPage = () => {
     }, []);
 
     return (
-        <main className="p-6 bg-blue-400 min-h-screen">
-            <h1 className="text-2xl font-semibold">Wicho Posts</h1>
-            <div className="bg-gray-50 w-full h-60">
-                <h2 className="text-lg font-semibold mt-4">carrusel de fotos o algo asi</h2>
+        <main className="min-h-screen bg-gray-50 pt-20">
+
+            {/* Header */}
+            <div className="bg-blue-900 text-white py-12">
+                <div className="max-w-5xl mx-auto px-4 sm:px-6">
+                    <h1 className="text-3xl font-bold mb-2">Wicho Posts</h1>
+                    <p className="text-blue-200 text-sm">Mensajes y publicaciones de la comunidad SEITC</p>
+                </div>
             </div>
 
-            <div className="">
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10 flex flex-col lg:flex-row gap-8">
 
-                <div className="p-6 flex flex-wrap gap-5">
-                    {posts.map((post) => (
-                        <WichoCard key={post.id} message={post.message} author={post.author ?? "Anonymous"} createdAt={post.createdAt} />
-                    ))}
-                    {posts.length === 0 && <p className="text-sm opacity-70">No posts yet.</p>}
-                </div>
+                {/* Posts */}
+                <section className="flex-1">
+                    <h2 className="text-lg font-semibold text-gray-700 mb-5">
+                        {posts.length > 0 ? `${posts.length} publicación${posts.length !== 1 ? "es" : ""}` : "Publicaciones"}
+                    </h2>
+                    {posts.length === 0 ? (
+                        <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-10 text-center text-gray-400">
+                            <p className="text-sm">Aún no hay publicaciones. ¡Sé el primero en escribir algo!</p>
+                        </div>
+                    ) : (
+                        <div className="grid gap-4 sm:grid-cols-2">
+                            {posts.map((post) => (
+                                <WichoCard
+                                    key={post.id}
+                                    message={post.message}
+                                    author={post.author ?? undefined}
+                                    createdAt={post.createdAt}
+                                />
+                            ))}
+                        </div>
+                    )}
+                </section>
 
-                <form onSubmit={handleSubmit} className="space-y-3 fixed bottom-10 right-10 p-10 bg-white rounded-lg">
-                    <h2 className="text-lg font-semibold">Add a new post</h2>
-                    <input
-                        value={message}
-                        onChange={(event) => setMessage(event.target.value)}
-                        placeholder="Message"
-                        className="w-full rounded border px-3 py-2"
-                    />
-                    <input
-                        value={author}
-                        onChange={(event) => setAuthor(event.target.value)}
-                        placeholder="Author (optional)"
-                        className="w-full rounded border px-3 py-2"
-                    />
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className="rounded border px-4 py-2"
-                    >
-                        {loading ? "Posting..." : "Post"}
-                    </button>
-                </form>
+                {/* Form */}
+                <aside className="w-full lg:w-80 flex-shrink-0">
+                    <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 sticky top-24">
+                        <h2 className="text-base font-semibold text-gray-800 mb-4">Nueva publicación</h2>
+                        <form onSubmit={handleSubmit} className="space-y-3">
+                            <div>
+                                <label className="block text-xs font-medium text-gray-600 mb-1">Mensaje</label>
+                                <textarea
+                                    value={message}
+                                    onChange={(e) => setMessage(e.target.value)}
+                                    placeholder="Escribe tu mensaje..."
+                                    rows={4}
+                                    className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-xs font-medium text-gray-600 mb-1">Autor <span className="text-gray-400">(opcional)</span></label>
+                                <input
+                                    value={author}
+                                    onChange={(e) => setAuthor(e.target.value)}
+                                    placeholder="Tu nombre"
+                                    className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                disabled={loading || !message.trim()}
+                                className="w-full flex items-center justify-center gap-2 bg-blue-800 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg px-4 py-2.5 transition-colors"
+                            >
+                                <Send className="w-4 h-4" />
+                                {loading ? "Publicando..." : "Publicar"}
+                            </button>
+                        </form>
+                    </div>
+                </aside>
 
             </div>
         </main>

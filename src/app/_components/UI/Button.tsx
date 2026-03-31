@@ -7,9 +7,9 @@ export const GradientButton = ({ href = "#", children }: { href?: string; childr
       className="inline-flex items-center gap-3
                  rounded-2xl px-8 py-4
                  font-semibold text-white text-xl
-                 bg-gradient-to-r from-[#0C2748] via-[#0C3A6A] to-[#0B89D0]
-                 shadow-[0_10px_30px_rgba(14,113,200,.35)]
-                 hover:brightness-110 transition-all"
+                 bg-blue-800
+                 shadow-md
+                 hover:bg-blue-700 transition-colors"
     >
       {children}
       {/* Icon Down */}

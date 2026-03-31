@@ -41,44 +41,44 @@ const AboutUs = () => {
   ];
 
   return (
-    <section id="sobre-nosotros" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+    <section id="sobre-nosotros" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16" data-aos="fade-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="text-gray-800">Sobre</span>{" "}
-            <span className="bg-gradient-to-r from-[#0C2748] via-[#0C3A6A] to-[#0B89D0] bg-clip-text text-transparent">
+            <span className="text-blue-700">
               Nosotros
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            La Sociedad Estudiantil de Ingeniería en Tecnologías Computacionales del Tecnológico de Monterrey, 
+            La Sociedad Estudiantil de Ingeniería en Tecnologías Computacionales del Tecnológico de Monterrey,
             Campus Monterrey, es una comunidad comprometida con la excelencia académica y el crecimiento profesional.
           </p>
         </div>
 
         {/* Main Content */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
-          <div className="space-y-6">
+          <div className="space-y-6" data-aos="fade-right">
             <h3 className="text-3xl font-bold text-gray-800 mb-6">
               ¿Quiénes somos?
             </h3>
             <p className="text-lg text-gray-600 leading-relaxed">
-              Somos una organización estudiantil que busca enriquecer la experiencia académica de nuestros miembros 
+              Somos una organización estudiantil que busca enriquecer la experiencia académica de nuestros miembros
               a través de actividades que complementen su formación profesional y personal.
             </p>
             <p className="text-lg text-gray-600 leading-relaxed">
-              Desde nuestra fundación, hemos trabajado incansablemente para crear un puente entre el mundo académico 
+              Desde nuestra fundación, hemos trabajado incansablemente para crear un puente entre el mundo académico
               y la industria tecnológica, ofreciendo oportunidades únicas de crecimiento y desarrollo.
             </p>
             <p className="text-lg text-gray-600 leading-relaxed">
-              Nuestra comunidad está formada por estudiantes apasionados por la tecnología, la innovación y el 
+              Nuestra comunidad está formada por estudiantes apasionados por la tecnología, la innovación y el
               impacto positivo que podemos generar en la sociedad a través de nuestros conocimientos y habilidades.
             </p>
           </div>
-          
-          <div className="relative">
+
+          <div className="relative" data-aos="fade-left" data-aos-delay="100">
             <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl">
               <Image
                 src="/images/Toma-Protesta.jpeg"
@@ -89,23 +89,25 @@ const AboutUs = () => {
               />
             </div>
             {/* Decorative elements */}
-            <div className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-r from-[#0C2748] to-[#0B89D0] rounded-full opacity-20 animate-pulse" />
+            <div className="absolute -top-6 -right-6 w-24 h-24 bg-blue-900 rounded-full opacity-20 animate-pulse" />
             <div className="absolute -bottom-6 -left-6 w-32 h-32 border-4 border-[#0B89D0] rounded-full opacity-30" />
           </div>
         </div>
 
         {/* Values Section */}
         <div className="mb-20">
-          <h3 className="text-3xl font-bold text-center text-gray-800 mb-12">
+          <h3 className="text-3xl font-bold text-center text-gray-800 mb-12" data-aos="fade-up">
             Nuestros Valores
           </h3>
           <div className="grid md:grid-cols-3 gap-8">
             {values.map((value, index) => (
               <div
                 key={index}
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
                 className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
               >
-                <div className="w-16 h-16 bg-gradient-to-r from-[#0C2748] to-[#0B89D0] rounded-xl flex items-center justify-center text-white mb-6">
+                <div className="w-16 h-16 bg-blue-800 rounded-xl flex items-center justify-center text-white mb-6">
                   {value.icon}
                 </div>
                 <h4 className="text-xl font-bold text-gray-800 mb-4">{value.title}</h4>
@@ -117,17 +119,19 @@ const AboutUs = () => {
 
         {/* Activities Section */}
         <div className="mb-16">
-          <h3 className="text-3xl font-bold text-center text-gray-800 mb-12">
+          <h3 className="text-3xl font-bold text-center text-gray-800 mb-12" data-aos="fade-up">
             ¿Qué Hacemos?
           </h3>
           <div className="grid md:grid-cols-3 gap-6">
             {activities.map((activity, index) => (
               <div
                 key={index}
+                data-aos="fade-up"
+                data-aos-delay={index * 120}
                 className="bg-white/70 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/90 transition-all duration-300"
               >
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-[#0C2748] to-[#0B89D0] rounded-lg flex items-center justify-center text-white">
+                  <div className="w-12 h-12 bg-blue-700 rounded-lg flex items-center justify-center text-white">
                     {activity.icon}
                   </div>
                   <h4 className="text-lg font-semibold text-gray-800">{activity.title}</h4>

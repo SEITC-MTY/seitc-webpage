@@ -57,7 +57,7 @@ const HeroSection = () => {
                                 {slides[currentSlide].title.split(" ").slice(0, 3).join(" ")}
                             </span>
                             <br />
-                            <span className="bg-gradient-to-r from-blue-300 to-cyan-300 bg-clip-text text-transparent">
+                            <span className="text-blue-300">
                                 {slides[currentSlide].title.split(" ").slice(3).join(" ")}
                             </span>
                         </h1>
