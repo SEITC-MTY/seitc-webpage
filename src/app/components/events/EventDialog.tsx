@@ -70,9 +70,7 @@ export function EventDialog({ evento, onClose }: Props) {
                             </>
                         ) : (
                             <p className="text-gray-600 leading-relaxed">
-                                {typeof evento.descripcion === 'string'
-                                    ? evento.descripcion
-                                    : evento.descripcion.texto}
+                                {evento.descripcion as string}
                             </p>
                         )}
 
