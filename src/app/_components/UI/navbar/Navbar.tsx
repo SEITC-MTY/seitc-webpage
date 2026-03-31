@@ -11,10 +11,10 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'INTEGRANTES', href: '/integrantes' },
-    { name: 'MERCHANDISING', href: '#merchandising' },
+    //{ name: 'MERCHANDISING', href: '#merchandising' },
     { name: 'EVENTOS', href: '/events' },
     {name: 'CONGRESO SEITC', href: '/congreso'},
-    { name: 'SEITC CHALLENGE', href: '/#seitcchallenge' },
+    //{ name: 'SEITC CHALLENGE', href: '/#seitcchallenge' },
   ];
 
   const isActive = (href: string) => {
