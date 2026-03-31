@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 interface Integrante {
   nombre: string;
@@ -49,6 +51,10 @@ const periodos: Periodo[] = [
 export default function Integrantes() {
   const [openId, setOpenId] = useState<string | null>(periodos[0].id);
 
+  useEffect(() => {
+    AOS.init({ duration: 700, easing: "ease-out-cubic", once: true, offset: 80 });
+  }, []);
+
   const toggle = (id: string) => {
     setOpenId((prev) => (prev === id ? null : id));
   };
@@ -63,16 +69,20 @@ export default function Integrantes() {
         <p className="text-white/70 text-base md:text-lg">
           Conoce a las personas que han formado parte de nuestra comunidad
         </p>
-        <div className="mt-4 mx-auto w-24 h-0.5 bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+        <div className="flex justify-center mt-6">
+          <div className="w-150 h-0.5 bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+        </div>
       </div>
 
       {/* Accordion Cards */}
       <div className="max-w-3xl mx-auto flex flex-col gap-4 mb-8">
-        {periodos.map((periodo) => {
+        {periodos.map((periodo, idx) => {
           const isOpen = openId === periodo.id;
           return (
             <div
               key={periodo.id}
+              data-aos="fade-up"
+              data-aos-delay={idx * 100}
               className="rounded-2xl overflow-hidden border border-white/40 shadow-md"
             >
               {/* Card Header*/}
@@ -145,7 +155,7 @@ export default function Integrantes() {
       </div>
 
       {/* Card */}
-      <div className="max-w-3xl mx-auto">
+      <div data-aos="fade-up" data-aos-delay="200" className="max-w-3xl mx-auto">
         <div className="bg-white/95 rounded-2xl shadow-lg px-8 py-8 flex flex-col items-center text-center">
           <h2 className="text-xl font-bold text-gray-900 mb-1">
             ¿Quieres formar parte de{" "}

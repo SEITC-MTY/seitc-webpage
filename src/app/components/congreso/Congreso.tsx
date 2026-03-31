@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronDown, Clock, MapPin, Calendar, User } from "lucide-react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 interface Ponente {
   nombre: string;
@@ -30,43 +32,97 @@ const paneles: Panel[] = [
   {
     id: "panel-1",
     horaInicio: "09:00",
-    horaFin: "10:30",
-    titulo: "Título del Panel 1",
-    ubicacion: "Auditorio Principal",
-    tags: ["Tag 1", "Tag 2"],
+    horaFin: "10:00",
+    titulo: "Available",
+    ubicacion: "Campus Monterrey",
+    // Add as many tags are required "Tag 1", "Tag2"...
+    tags: ["Tag 1"],
     descripcion:
-      "Descripción breve del panel. Aquí se explica de qué trata la sesión, cuáles son los temas principales que se abordarán y qué aprenderá el asistente al participar.",
+      "Description",
     ponentes: [
-      { nombre: "Nombre Ponente", cargo: "Cargo — Empresa" },
       { nombre: "Nombre Ponente", cargo: "Cargo — Empresa" },
     ],
   },
   {
     id: "panel-2",
-    horaInicio: "11:00",
-    horaFin: "12:30",
-    titulo: "Título del Panel 2",
-    ubicacion: "Sala de Conferencias A",
-    tags: ["Tag 1", "Tag 2"],
+    horaInicio: "10:00",
+    horaFin: "11:00",
+    titulo: "Machine Learning & AI Director at Banregio",
+    ubicacion: "Campus Monterrey",
+    tags: ["Machine Learning", "Artificial Intelligence"],
     descripcion:
       "Descripción breve del panel. Aquí se explica de qué trata la sesión, cuáles son los temas principales que se abordarán y qué aprenderá el asistente al participar.",
+    ponentes: [
+      { nombre: "Gabriel Macias", cargo: "Banregio" },
+    ],
+  },
+  {
+    id: "panel-3",
+    horaInicio: "11:00",
+    horaFin: "12:00",
+    titulo: "Data & AI Technical Specialist at IBM México",
+    ubicacion: "Campus Monterrey",
+    tags: ["Data Science", "Artificial Intelligence"],
+    descripcion:
+      "Descripción breve del panel. Aquí se explica de qué trata la sesión, cuáles son los temas principales que se abordarán y qué aprenderá el asistente al participar.",
+    ponentes: [
+      { nombre: "Arnulfo Cavazos", cargo: "IBM México" },
+    ],
+  },
+  {
+    id: "panel-4",
+    horaInicio: "12:00",
+    horaFin: "13:00",
+    titulo: "Available",
+    ubicacion: "Campus Monterrey",
+    // Add as many tags are required "Tag 1", "Tag2"...
+    tags: ["Tag 1"],
+    descripcion:
+      "Description",
     ponentes: [
       { nombre: "Nombre Ponente", cargo: "Cargo — Empresa" },
     ],
   },
   {
-    id: "panel-3",
-    horaInicio: "13:30",
-    horaFin: "15:00",
-    titulo: "Título del Panel 3",
-    ubicacion: "Aula Magna",
+    id: "panel-5",
+    horaInicio: "13:00",
+    horaFin: "14:00",
+    titulo: "Available",
+    ubicacion: "Campus Monterrey",
+    // Add as many tags are required "Tag 1", "Tag2"...
     tags: ["Tag 1"],
     descripcion:
-      "Descripción breve del panel. Aquí se explica de qué trata la sesión, cuáles son los temas principales que se abordarán y qué aprenderá el asistente al participar.",
+      "Description",
     ponentes: [
       { nombre: "Nombre Ponente", cargo: "Cargo — Empresa" },
-      { nombre: "Nombre Ponente", cargo: "Cargo — Empresa" },
-      { nombre: "Nombre Ponente", cargo: "Cargo — Empresa" },
+    ],
+  },
+  {
+    id: "panel-6",
+    horaInicio: "14:00",
+    horaFin: "15:00",
+    titulo: "NVIDIA Campus Ambassador",
+    ubicacion: "Campus Monterrey",
+    // Add as many tags are required "Tag 1", "Tag2"...
+    tags: ["Edge Computing", "Artificial Intelligence", "Community"],
+    descripcion:
+      "Description",
+    ponentes: [
+      { nombre: "Alberto Muñoz", cargo: "NVIDIA Ambassador" },
+    ],
+  },
+  {
+    id: "panel-7",
+    horaInicio: "15:00",
+    horaFin: "16:00",
+    titulo: "Available",
+    ubicacion: "Campus Monterrey",
+    // Add as many tags are required "Tag 1", "Tag2"...
+    tags: ["Tag 1"],
+    descripcion:
+      "Description",
+    ponentes: [
+      { nombre: "Nombre", cargo: "Cargo" },
     ],
   },
 ];
@@ -83,6 +139,10 @@ const TAG_COLORS = [
 
 export default function Congreso() {
   const [openId, setOpenId] = useState<string | null>(null);
+
+  useEffect(() => {
+    AOS.init({ duration: 700, easing: "ease-out-cubic", once: true, offset: 80 });
+  }, []);
 
   const toggle = (id: string) =>
     setOpenId((prev) => (prev === id ? null : id));
@@ -107,7 +167,7 @@ export default function Congreso() {
       <div className="max-w-3xl mx-auto flex flex-col gap-6">
 
         {/* Info card del evento */}
-        <div className="bg-white rounded-2xl shadow-md px-6 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div data-aos="fade-up" data-aos-delay="100" className="bg-white rounded-2xl shadow-md px-6 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div>
             <p className="text-gray-900 font-bold text-lg">{INFO_CONGRESO.titulo}</p>
             <div className="flex items-center gap-1.5 text-gray-500 text-sm mt-1">
@@ -122,13 +182,15 @@ export default function Congreso() {
         </div>
 
         {/* Agenda */}
-        <h2 className="text-white font-bold text-2xl -mb-2">Agenda del Día</h2>
+        <h2 data-aos="fade-up" data-aos-delay="150" className="text-white font-bold text-2xl -mb-2">Agenda del Día</h2>
 
         {paneles.map((panel, panelIdx) => {
           const isOpen = openId === panel.id;
           return (
             <div
               key={panel.id}
+              data-aos="fade-up"
+              data-aos-delay={200 + panelIdx * 100}
               className="rounded-2xl overflow-hidden border border-white/40 shadow-md"
             >
               {/* Header del acordeón */}
