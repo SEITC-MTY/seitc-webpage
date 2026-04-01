@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { ChevronDown, Clock, MapPin, Calendar, User } from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -207,13 +208,13 @@ export default function Congreso() {
               data-aos-delay={200 + panelIdx * 100}
               className="rounded-2xl overflow-hidden border border-white/40 shadow-md"
             >
-              {/* Header del acordeón */}
+              {/* Header */}
               <button
                 className="relative w-full text-left px-6 py-5 bg-gradient-to-r from-[#1a3560] to-[#2a5888] hover:from-[#20406e] hover:to-[#326498] transition-all duration-300"
                 onClick={() => toggle(panel.id)}
                 aria-expanded={isOpen}
               >
-                {/* Fila 1: hora + tags + chevron */}
+                {/* hora + tags + chevron */}
                 <div className="flex items-center justify-between gap-3 mb-2">
                   <div className="flex items-center gap-3 flex-wrap">
                     <span className="flex items-center gap-1 text-white/70 text-sm font-medium">
@@ -229,15 +230,17 @@ export default function Congreso() {
                       </span>
                     ))}
                   </div>
-                  <ChevronDown
-                    className={`text-white/70 w-5 h-5 flex-shrink-0 transition-transform duration-300 ${
-                      isOpen ? "rotate-180" : "rotate-0"
-                    }`}
-                  />
+                  <div className="flex items-center gap-2 flex-shrink-0">
+                    <ChevronDown
+                      className={`text-white/70 w-5 h-5 flex-shrink-0 transition-transform duration-300 ${
+                        isOpen ? "rotate-180" : "rotate-0"
+                      }`}
+                    />
+                  </div>
                 </div>
 
                 {/* Fila 2: título */}
-                <p className="text-white font-bold text-lg leading-snug pr-28">
+                <p className="text-white font-bold text-lg leading-snug pr-32">
                   {panel.titulo}
                 </p>
 
@@ -247,12 +250,15 @@ export default function Congreso() {
                   {panel.ubicacion}
                 </p>
 
-                {/* Logo — absoluto, centrado vertical, a la derecha del chevron */}
+                {/* Logo */}
                 {panel.logoEmpresa && (
-                  <img
+                  <Image
                     src={panel.logoEmpresa}
                     alt="logo empresa"
-                    className="absolute right-16 top-1/2 -translate-y-1/2 h-16 w-auto object-contain rounded-lg opacity-90 pointer-events-none"
+                    width={160}
+                    height={72}
+                    className="absolute right-14 top-3 rounded-xl opacity-90 object-contain pointer-events-none"
+                    style={{ height: "64px", width: "auto" }}
                   />
                 )}
               </button>
@@ -287,9 +293,9 @@ export default function Congreso() {
                             key={i}
                             className="flex items-center gap-2.5 bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
                           >
-                            <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 border border-gray-200">
+                            <div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0 border border-gray-200">
                               {ponente.foto
-                                ? <img src={ponente.foto} alt={ponente.nombre} className="w-full h-full object-cover" />
+                                ? <Image src={ponente.foto} alt={ponente.nombre} fill className="object-cover" />
                                 : <div className="w-full h-full bg-blue-100 flex items-center justify-center">
                                     <User className="w-4 h-4 text-blue-700" />
                                   </div>
