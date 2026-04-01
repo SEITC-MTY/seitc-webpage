@@ -14,6 +14,7 @@ const Footer = () => {
   const quickLinks = [
     { name: 'Sobre nosotros', href: '#sobre-nosotros' },
     { name: 'Eventos', href: '/events' },
+    {name: 'Congreso SEITC', href: '/congreso'},
     { name: 'SEITC Challenge', href: '/challenge' },
   ];
 
@@ -73,7 +74,7 @@ const Footer = () => {
             href="https://chat.whatsapp.com/Ejj8hsLdqlXAuHBHQ9bJVG"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-blue-700 hover:bg-blue-600 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors duration-200"
+            className="inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 font-semibold text-white text-sm bg-gradient-to-r from-[#0C2748] via-[#0C3A6A] to-[#0B89D0] hover:brightness-110 transition-all whitespace-nowrap flex-shrink-0"
           >
             Únete a SEITC
           </Link>

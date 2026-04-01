@@ -155,8 +155,7 @@ export default function Congreso() {
     setOpenId((prev) => (prev === id ? null : id));
 
   return (
-    <section className="min-h-screen bg-blue-900 pt-28 pb-20 px-4">
-
+    <section className="min-h-screen bg-gradient-to-b from-[#0b1221] via-[#152e59] to-[#0b1221] pt-28 pb-20 px-4">
       {/* Header */}
       <div className="text-center mb-10">
         <h1 className="text-5xl md:text-6xl font-bold mb-4 text-white">
@@ -190,7 +189,7 @@ export default function Congreso() {
             href="https://forms.gle/SeGtaisEyAimsPWe7"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 font-semibold text-white text-sm bg-gradient-to-r from-[#0C2748] via-[#0C3A6A] to-[#0B89D0] shadow-[0_8px_24px_rgba(14,113,200,.35)] hover:brightness-110 transition-all whitespace-nowrap flex-shrink-0"
+            className="inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 font-semibold text-white text-sm bg-gradient-to-r from-[#0C2748] via-[#0C3A6A] to-[#0B89D0] hover:brightness-110 transition-all whitespace-nowrap flex-shrink-0"
           >
             Registrarse
           </a>
@@ -347,7 +346,7 @@ export default function Congreso() {
             href="https://forms.gle/SeGtaisEyAimsPWe7"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-2xl px-8 py-4 font-semibold text-white text-base bg-gradient-to-r from-[#0C2748] via-[#0C3A6A] to-[#0B89D0] shadow-[0_10px_30px_rgba(14,113,200,.35)] hover:brightness-110 transition-all"
+            className="inline-flex items-center gap-2 rounded-2xl px-8 py-4 font-semibold text-white text-base bg-gradient-to-r from-[#0C2748] via-[#0C3A6A] to-[#0B89D0] hover:brightness-110 transition-all"
           >
             Registrarse al evento
           </a>
