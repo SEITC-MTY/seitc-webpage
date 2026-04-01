@@ -4,16 +4,11 @@ import React from "react";
 export const GradientButton = ({ href = "#", children }: { href?: string; children: React.ReactNode }) => (
     <a
       href={href}
-      className="inline-flex items-center gap-3
-                 rounded-2xl px-8 py-4
-                 font-semibold text-white text-xl
-                 bg-blue-800
-                 shadow-md
-                 hover:bg-blue-700 transition-colors"
+      className="inline-flex items-center justify-center gap-2 rounded-2xl px-8 py-4 font-semibold text-white text-base bg-gradient-to-r from-[#0C2748] via-[#0C3A6A] to-[#0B89D0] hover:brightness-110 transition-all"
     >
       {children}
       {/* Icon Down */}
-      <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2">
+      <svg viewBox="0 0 24 24" className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M6 9l6 6 6-6" />
       </svg>
     </a>
@@ -31,7 +26,7 @@ export const GradientButton = ({ href = "#", children }: { href?: string; childr
     >
       {children}
       {/* Arrow Right */}
-      <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2">
+      <svg viewBox="0 0 24 24" className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M13 5l7 7-7 7" />
       </svg>
     </a>

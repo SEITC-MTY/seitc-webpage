@@ -99,7 +99,7 @@ const ChallengePage = () => {
             {/* Replace src with the actual QR image path once available */}
             <div className="flex-shrink-0 w-44 h-44 border-2 border-blue-200 rounded-xl bg-white flex items-center justify-center">
               <span className="text-blue-300 text-xs text-center px-4 leading-relaxed">
-                Coloca aquí el QR de registro
+                QR de registro pendiente
               </span>
             </div>
           </div>

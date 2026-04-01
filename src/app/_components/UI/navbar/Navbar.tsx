@@ -11,7 +11,7 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'INTEGRANTES', href: '/integrantes' },
-    { name: 'MERCHANDISING', href: '#merchandising' },
+    //{ name: 'MERCHANDISING', href: '#merchandising' },
     { name: 'EVENTOS', href: '/events' },
     {name: 'CONGRESO SEITC', href: '/congreso'},
     { name: 'SEITC CHALLENGE', href: '/challenge' },
@@ -70,7 +70,7 @@ const Navbar = () => {
               href="https://chat.whatsapp.com/Ejj8hsLdqlXAuHBHQ9bJVG"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-2xl px-6 py-3 font-semibold text-white bg-blue-800 shadow-md hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-2.5 font-semibold text-white bg-gradient-to-r from-[#0C2748] via-[#0C3A6A] to-[#0B89D0] hover:brightness-110 transition-all text-sm tracking-wide"
             >
               Únete a SEITC
             </Link>
@@ -127,7 +127,7 @@ const Navbar = () => {
               href="https://chat.whatsapp.com/Ejj8hsLdqlXAuHBHQ9bJVG"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex justify-center items-center gap-2 mx-3 mt-4 rounded-2xl px-6 py-3 font-semibold text-white bg-blue-800 shadow-md hover:bg-blue-700 transition-colors"
+              className="flex justify-center items-center gap-2 mx-3 mt-4 rounded-2xl px-6 py-3 font-semibold text-white bg-gradient-to-r from-[#0C2748] via-[#0C3A6A] to-[#0B89D0] hover:brightness-110 transition-all text-sm tracking-wide"
               onClick={() => setIsMenuOpen(false)}
             >
               Únete a SEITC

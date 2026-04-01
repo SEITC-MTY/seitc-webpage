@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { ChevronDown, Clock, MapPin, Calendar, User } from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -8,6 +9,7 @@ import "aos/dist/aos.css";
 interface Ponente {
   nombre: string;
   cargo: string;
+  foto?: string;
 }
 
 interface Panel {
@@ -19,6 +21,7 @@ interface Panel {
   tags: string[];
   descripcion: string;
   ponentes: Ponente[];
+  logoEmpresa?: string;
 }
 
 
@@ -53,8 +56,9 @@ const paneles: Panel[] = [
     descripcion:
       "Explora cómo el machine learning y la inteligencia artificial están transformando la industria financiera.",
     ponentes: [
-      { nombre: "Gabriel Macias", cargo: "Banregio" },
+      { nombre: "Gabriel Macias", cargo: "Banregio", foto: "/congreso/ponentes/GabrielMacias.jpeg" },
     ],
+    logoEmpresa: "/congreso/ponentes/empresas/banregio.png",
   },
   {
     id: "panel-3",
@@ -66,8 +70,9 @@ const paneles: Panel[] = [
     descripcion:
       "Explora cómo la ciencia de datos y la inteligencia artificial impulsan la innovación, el análisis avanzado y la creación de soluciones basadas en datos.",
     ponentes: [
-      { nombre: "Arnulfo Cavazos", cargo: "IBM México" },
+      { nombre: "Arnulfo Cavazos", cargo: "IBM México", foto:"/congreso/ponentes/ArnulfoCavazos.jpeg" },
     ],
+    logoEmpresa: "/congreso/ponentes/empresas/ibm.png",
   },
   {
     id: "panel-4",
@@ -87,15 +92,16 @@ const paneles: Panel[] = [
     id: "panel-5",
     horaInicio: "13:00",
     horaFin: "14:00",
-    titulo: "Available",
+    titulo: "Data Analytics & AI Solutions Engineer at Snowflake",
     ubicacion: "Campus Monterrey",
     // Add as many tags are required "Tag 1", "Tag2"...
-    tags: ["Tag 1"],
+    tags: ["Data Analytics", "Artificial Intelligence", "AI Solutions"],
     descripcion:
-      "Description",
+      "Aprende cómo los datos y la inteligencia artificial pueden integrarse para resolver problemas complejos, identificar oportunidades y construir soluciones con impacto real.",
     ponentes: [
-      { nombre: "Nombre Ponente", cargo: "Cargo — Empresa" },
+      { nombre: "Rodolfo Flores", cargo: "Snowflake", foto: "/congreso/ponentes/RodolfoFlores.jpeg" },
     ],
+    logoEmpresa: "/congreso/ponentes/empresas/snowflake.png",
   },
   {
     id: "panel-6",
@@ -108,8 +114,9 @@ const paneles: Panel[] = [
     descripcion:
       "Una sesión enfocada en el ecosistema de NVIDIA, las tecnologías Edge y la experiencia detrás de un reciente hackathon, explorando cómo estas herramientas impulsan la innovación y el desarrollo de soluciones tecnológicas.",
     ponentes: [
-      { nombre: "Alberto Muñoz", cargo: "NVIDIA Ambassador" },
+      { nombre: "Alberto Muñoz", cargo: "NVIDIA Ambassador", foto:"/congreso/ponentes/AlbertoMunoz.jpeg" },
     ],
+    logoEmpresa: "/congreso/ponentes/empresas/nvidia.png",
   },
   {
     id: "panel-7",
@@ -148,8 +155,7 @@ export default function Congreso() {
     setOpenId((prev) => (prev === id ? null : id));
 
   return (
-    <section className="min-h-screen bg-blue-900 pt-28 pb-20 px-4">
-
+    <section className="min-h-screen bg-gradient-to-b from-[#0b1221] via-[#152e59] to-[#0b1221] pt-28 pb-20 px-4">
       {/* Header */}
       <div className="text-center mb-10">
         <h1 className="text-5xl md:text-6xl font-bold mb-4 text-white">
@@ -167,18 +173,26 @@ export default function Congreso() {
       <div className="max-w-3xl mx-auto flex flex-col gap-6">
 
         {/* Info card del evento */}
-        <div data-aos="fade-up" data-aos-delay="100" className="bg-white rounded-2xl shadow-md px-6 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div data-aos="fade-up" data-aos-delay="100" className="bg-white rounded-2xl shadow-md px-6 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <p className="text-gray-900 font-bold text-lg">{INFO_CONGRESO.titulo}</p>
             <div className="flex items-center gap-1.5 text-gray-500 text-sm mt-1">
               <Calendar className="w-4 h-4" />
               <span>{INFO_CONGRESO.fecha}</span>
             </div>
+            <div className="flex items-center gap-1.5 text-gray-400 text-sm mt-1">
+              <MapPin className="w-4 h-4 flex-shrink-0" />
+              <span>{INFO_CONGRESO.ubicacion}</span>
+            </div>
           </div>
-          <div className="flex items-center gap-1.5 text-gray-400 text-sm">
-            <MapPin className="w-4 h-4 flex-shrink-0" />
-            <span>{INFO_CONGRESO.ubicacion}</span>
-          </div>
+          <a
+            href="https://forms.gle/SeGtaisEyAimsPWe7"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 font-semibold text-white text-sm bg-gradient-to-r from-[#0C2748] via-[#0C3A6A] to-[#0B89D0] hover:brightness-110 transition-all whitespace-nowrap flex-shrink-0"
+          >
+            Registrarse
+          </a>
         </div>
 
         {/* Agenda */}
@@ -193,13 +207,13 @@ export default function Congreso() {
               data-aos-delay={200 + panelIdx * 100}
               className="rounded-2xl overflow-hidden border border-white/40 shadow-md"
             >
-              {/* Header del acordeón */}
+              {/* Header */}
               <button
-                className="w-full text-left px-6 py-5 bg-blue-800 hover:bg-blue-700 transition-colors duration-200"
+                className="relative w-full text-left px-6 py-5 bg-gradient-to-r from-[#1a3560] to-[#2a5888] hover:from-[#20406e] hover:to-[#326498] transition-all duration-300"
                 onClick={() => toggle(panel.id)}
                 aria-expanded={isOpen}
               >
-                {/* Fila 1: hora + tags + chevron */}
+                {/* hora + tags + chevron */}
                 <div className="flex items-center justify-between gap-3 mb-2">
                   <div className="flex items-center gap-3 flex-wrap">
                     <span className="flex items-center gap-1 text-white/70 text-sm font-medium">
@@ -215,15 +229,17 @@ export default function Congreso() {
                       </span>
                     ))}
                   </div>
-                  <ChevronDown
-                    className={`text-white/70 w-5 h-5 flex-shrink-0 transition-transform duration-300 ${
-                      isOpen ? "rotate-180" : "rotate-0"
-                    }`}
-                  />
+                  <div className="flex items-center gap-2 flex-shrink-0">
+                    <ChevronDown
+                      className={`text-white/70 w-5 h-5 flex-shrink-0 transition-transform duration-300 ${
+                        isOpen ? "rotate-180" : "rotate-0"
+                      }`}
+                    />
+                  </div>
                 </div>
 
                 {/* Fila 2: título */}
-                <p className="text-white font-bold text-lg leading-snug">
+                <p className="text-white font-bold text-lg leading-snug pr-32">
                   {panel.titulo}
                 </p>
 
@@ -232,6 +248,18 @@ export default function Congreso() {
                   <MapPin className="w-3.5 h-3.5" />
                   {panel.ubicacion}
                 </p>
+
+                {/* Logo */}
+                {panel.logoEmpresa && (
+                  <Image
+                    src={panel.logoEmpresa}
+                    alt="logo empresa"
+                    width={160}
+                    height={72}
+                    className="absolute right-14 top-5 rounded-xl opacity-90 object-contain pointer-events-none"
+                    style={{ height: "64px", width: "auto" }}
+                  />
+                )}
               </button>
 
               {/* Cuerpo expandido */}
@@ -264,8 +292,13 @@ export default function Congreso() {
                             key={i}
                             className="flex items-center gap-2.5 bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
                           >
-                            <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
-                              <User className="w-4 h-4 text-blue-700" />
+                            <div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0 border border-gray-200">
+                              {ponente.foto
+                                ? <Image src={ponente.foto} alt={ponente.nombre} fill className="object-cover" />
+                                : <div className="w-full h-full bg-blue-100 flex items-center justify-center">
+                                    <User className="w-4 h-4 text-blue-700" />
+                                  </div>
+                              }
                             </div>
                             <div>
                               <p className="text-gray-900 font-semibold text-sm leading-tight">
@@ -281,7 +314,7 @@ export default function Congreso() {
                     </div>
                   )}
 
-                  {/* Detalles rápidos */}
+                  {/* Detalles */}
                   <div className="flex flex-wrap gap-4 text-sm text-gray-500 border-t pt-4">
                     <span className="flex items-center gap-1">
                       <Clock className="w-4 h-4 text-blue-500" />
@@ -297,6 +330,27 @@ export default function Congreso() {
             </div>
           );
         })}
+      </div>
+
+      {/* Card */}
+      <div data-aos="fade-up" data-aos-delay="200" className="max-w-3xl mx-auto mt-8">
+        <div className="bg-white/95 rounded-2xl shadow-lg px-8 py-8 flex flex-col items-center text-center">
+          <h2 className="text-xl font-bold text-gray-900 mb-1">
+            ¿Listo para vivir el{" "}
+            <span className="text-blue-700">Congreso SEITC</span>?
+          </h2>
+          <p className="text-gray-500 text-sm mb-6">
+            Conecta con la industria y lleva tu carrera al siguiente nivel ¡No te lo pierdas!
+          </p>
+          <a
+            href="https://forms.gle/SeGtaisEyAimsPWe7"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-2xl px-8 py-4 font-semibold text-white text-base bg-gradient-to-r from-[#0C2748] via-[#0C3A6A] to-[#0B89D0] hover:brightness-110 transition-all"
+          >
+            Registrarse al evento
+          </a>
+        </div>
       </div>
     </section>
   );
