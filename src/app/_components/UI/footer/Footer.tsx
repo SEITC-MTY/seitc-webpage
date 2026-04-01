@@ -1,4 +1,6 @@
 import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import SocialMediaIcon from './SocialMediaIcon';
 
 const Footer = () => {
@@ -9,48 +11,84 @@ const Footer = () => {
     { header: 'instagram', content: 'https://www.instagram.com/seitc.mty/' },
   ];
 
+  const quickLinks = [
+    { name: 'Sobre nosotros', href: '#sobre-nosotros' },
+    { name: 'Eventos', href: '/events' },
+    { name: 'SEITC Challenge', href: '/challenge' },
+  ];
+
   return (
-    <footer className="w-full bg-gradient-to-r from-[hsl(217,73%,16%)] via-[hsl(210,69%,27%)] to-[hsl(206,69%,44%)] text-white py-8">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* SEITC Info*/}
-            <div className="space-y-4">
-            <h3 className="text-xl font-bold">SEITC</h3>
-            <p className="text-sm text-justify">
-              La Sociedad de Estudiantes de Ingeniería en Tecnologías Computacionales tiene como objetivo 
-              proporcionar a los estudiantes de Ingeniería Computacional la oportunidad de adquirir habilidades 
-              técnicas relevantes, conocer tecnologías emergentes y desarrollar capacidades de liderazgo y organización.
-            </p>
-            </div>
-          
-          {/* Quick Links */}
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold">Quick Links</h3>
-            <ul className="space-y-2">
-              {/* href usa # porque esta en la misma pagina
-                  cambiar # -> / si es necesario */}
-              <li><a href="#aboutUs" className="hover:opacity-75">About Us</a></li>  
-              <li><a href="/services" className="hover:opacity-75">Services</a></li>
-              <li><a href="/contact" className="hover:opacity-75">Contact</a></li>
-            </ul>
-          </div>
-          
-          {/* Social Media */}
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold">Follow Us</h3>
-            <ul className="flex space-x-4">
-              {socialLinks.map((link) => (
-                <SocialMediaIcon
-                  key={link.header}
-                  header={link.header}
-                  content={link.content}
-                />
-              ))}
-            </ul>
-          </div>
+    <footer className="w-full bg-[#0c1f35] text-white">
+
+      {/* Main content */}
+      <div className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-3 gap-12">
+
+        {/* Brand column */}
+        <div className="space-y-5" data-aos="fade-up" data-aos-delay="0">
+          <Image
+            src="/images/Logo_Blanco.svg"
+            alt="SEITC logo"
+            width={120}
+            height={44}
+            className="h-11 w-auto"
+          />
+          <p className="text-sm text-blue-200 leading-relaxed">
+            Sociedad de Estudiantes de Ingeniería en Tecnologías Computacionales del Tecnológico de Monterrey, Campus Monterrey.
+          </p>
+          <ul className="flex gap-4 pt-1">
+            {socialLinks.map((link) => (
+              <SocialMediaIcon
+                key={link.header}
+                header={link.header}
+                content={link.content}
+              />
+            ))}
+          </ul>
         </div>
-        
+
+        {/* Quick links */}
+        <div className="space-y-5" data-aos="fade-up" data-aos-delay="100">
+          <h3 className="text-xs font-semibold tracking-widest uppercase text-blue-400">Navegación</h3>
+          <ul className="space-y-3">
+            {quickLinks.map((link) => (
+              <li key={link.name}>
+                <Link
+                  href={link.href}
+                  className="text-sm text-blue-100 hover:text-white transition-colors duration-200"
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Contact / join */}
+        <div className="space-y-5" data-aos="fade-up" data-aos-delay="200">
+          <h3 className="text-xs font-semibold tracking-widest uppercase text-blue-400">Únete</h3>
+          <p className="text-sm text-blue-200 leading-relaxed">
+            ¿Eres estudiante de ITC en el Tec de Monterrey? Forma parte de nuestra comunidad.
+          </p>
+          <Link
+            href="https://chat.whatsapp.com/Ejj8hsLdqlXAuHBHQ9bJVG"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-blue-700 hover:bg-blue-600 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors duration-200"
+          >
+            Únete a SEITC
+          </Link>
+        </div>
+
       </div>
+
+      {/* Bottom bar */}
+      <div className="border-t border-blue-900">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-blue-400">
+          <span>© {new Date().getFullYear()} SEITC — Tecnológico de Monterrey, Campus Monterrey</span>
+          <span>Ingeniería en Tecnologías Computacionales</span>
+        </div>
+      </div>
+
     </footer>
   );
 };

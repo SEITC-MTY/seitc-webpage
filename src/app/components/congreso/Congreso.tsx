@@ -148,7 +148,7 @@ export default function Congreso() {
     setOpenId((prev) => (prev === id ? null : id));
 
   return (
-    <section className="min-h-screen bg-gradient-to-r from-[#0a1628] to-[#1a3a5c] pt-28 pb-20 px-4">
+    <section className="min-h-screen bg-blue-900 pt-28 pb-20 px-4">
 
       {/* Header */}
       <div className="text-center mb-10">
@@ -160,7 +160,7 @@ export default function Congreso() {
           diferentes áreas de la ingeniería
         </p>
         <div className="flex justify-center mt-6">
-          <div className="w-150 h-0.5 bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+          <div className="w-32 h-px bg-white/20 mx-auto" />
         </div>
       </div>
 
@@ -195,7 +195,7 @@ export default function Congreso() {
             >
               {/* Header del acordeón */}
               <button
-                className="w-full text-left px-6 py-5 bg-gradient-to-r from-[#1a3560] to-[#2a5888] hover:from-[#20406e] hover:to-[#326498] transition-all duration-300"
+                className="w-full text-left px-6 py-5 bg-blue-800 hover:bg-blue-700 transition-colors duration-200"
                 onClick={() => toggle(panel.id)}
                 aria-expanded={isOpen}
               >

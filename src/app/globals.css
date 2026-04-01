@@ -33,26 +33,17 @@ body {
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center font-semibold text-white transition shadow-md rounded-xl;
+    @apply inline-flex items-center justify-center font-semibold text-white transition shadow-md rounded-xl bg-blue-800;
     height: 48px;
-    /* ajusta según tu diseño */
     padding-left: 24px;
     padding-right: 24px;
-    background: linear-gradient(135deg,
-        hsl(217 73% 16%),
-        hsl(210 69% 27%),
-        hsl(206 69% 44%));
   }
 
   .btn:hover {
-    opacity: 0.9;
+    @apply bg-blue-700;
   }
 }
 
-/* Clases personalizadas para efectos */
-.bg-gradient-primary {
-  background: linear-gradient(135deg, #0b184a 0%, #2181be 50%, #ffffff 100%);
-}
 
 .shadow-glow {
   box-shadow:

@@ -60,7 +60,7 @@ export default function Integrantes() {
   };
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-[#0a0e2e] via-[#0d1a5c] to-[#1a2a7a] pt-28 pb-20 px-4">
+    <section className="min-h-screen bg-blue-900 pt-28 pb-20 px-4">
       {/* Header */}
       <div className="text-center mb-12">
         <h1 className="text-5xl md:text-6xl font-bold mb-4 text-white">
@@ -70,7 +70,7 @@ export default function Integrantes() {
           Conoce a las personas que han formado parte de nuestra comunidad
         </p>
         <div className="flex justify-center mt-6">
-          <div className="w-150 h-0.5 bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+          <div className="w-32 h-px bg-white/20 mx-auto" />
         </div>
       </div>
 
@@ -87,7 +87,7 @@ export default function Integrantes() {
             >
               {/* Card Header*/}
               <button
-                className="w-full flex items-center justify-between px-6 py-5 bg-gradient-to-r from-[#0d1a5c] to-[#1a3a8a] hover:from-[#102070] hover:to-[#1e45a0] transition-all duration-300 cursor-pointer"
+                className="w-full flex items-center justify-between px-6 py-5 bg-blue-800 hover:bg-blue-700 transition-colors duration-200 cursor-pointer"
                 onClick={() => toggle(periodo.id)}
                 aria-expanded={isOpen}
               >
@@ -125,7 +125,7 @@ export default function Integrantes() {
                             style={{ width: "calc(25% - 18px)" }}
                           >
                             {/* Avatar placeholder*/}
-                            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-100 to-blue-200 border-2 border-blue-900/30 flex items-center justify-center flex-shrink-0">
+                            <div className="w-16 h-16 rounded-full bg-blue-100 border-2 border-blue-200 flex items-center justify-center flex-shrink-0">
                               <span className="text-blue-900 font-bold text-lg">
                                 {integrante.nombre
                                   .split(" ")
@@ -168,7 +168,7 @@ export default function Integrantes() {
             href="https://chat.whatsapp.com/Ejj8hsLdqlXAuHBHQ9bJVG"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-2xl px-8 py-4 font-semibold text-white text-base bg-gradient-to-r from-[#0C2748] via-[#0C3A6A] to-[#0B89D0] shadow-[0_10px_30px_rgba(14,113,200,.35)] hover:brightness-110 transition-all"
+            className="inline-flex items-center gap-2 rounded-2xl px-8 py-4 font-semibold text-white text-base bg-blue-800 shadow-md hover:bg-blue-700 transition-colors"
           >
             Únete ahora
           </a>
