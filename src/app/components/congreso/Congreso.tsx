@@ -257,7 +257,7 @@ export default function Congreso() {
                     alt="logo empresa"
                     width={160}
                     height={72}
-                    className="absolute right-14 top-3 rounded-xl opacity-90 object-contain pointer-events-none"
+                    className="absolute right-14 top-5 rounded-xl opacity-90 object-contain pointer-events-none"
                     style={{ height: "64px", width: "auto" }}
                   />
                 )}
