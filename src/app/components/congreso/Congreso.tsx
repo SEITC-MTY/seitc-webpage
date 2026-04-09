@@ -33,7 +33,7 @@ const INFO_CONGRESO = {
 
 const paneles: Panel[] = [
   {
-    id: "panel-2",
+    id: "panel-1",
     horaInicio: "10:00",
     horaFin: "11:00",
     titulo: "Machine Learning & AI Director at Banregio",
@@ -47,7 +47,7 @@ const paneles: Panel[] = [
     logoEmpresa: "/congreso/ponentes/empresas/banregio.png",
   },
   {
-    id: "panel-3",
+    id: "panel-2",
     horaInicio: "11:00",
     horaFin: "12:00",
     titulo: "Data & AI Technical Specialist at IBM México",
@@ -61,21 +61,19 @@ const paneles: Panel[] = [
     logoEmpresa: "/congreso/ponentes/empresas/ibm.png",
   },
   {
-    id: "panel-4",
+    id: "panel-3",
     horaInicio: "12:00",
     horaFin: "13:00",
     titulo: "Networking & Coffe Break",
     ubicacion: "Campus Monterrey",
     // Add as many tags are required "Tag 1", "Tag2"...
-    tags: ["Tag 1"],
+    tags: ["Networking", "Coffe Break"],
     descripcion:
       "Sesion de networking para que los asistentes puedan conectar entre sí, compartir ideas y establecer contactos profesionales en un ambiente relajado, acompañado de café y snacks.",
-    ponentes: [
-      { nombre: "Nombre Ponente", cargo: "Cargo — Empresa" },
-    ],
+    ponentes: [],
   },
   {
-    id: "panel-5",
+    id: "panel-4",
     horaInicio: "13:00",
     horaFin: "14:00",
     titulo: "Data Analytics & AI Solutions Engineer at Snowflake",
@@ -90,7 +88,7 @@ const paneles: Panel[] = [
     logoEmpresa: "/congreso/ponentes/empresas/snowflake.png",
   },
   {
-    id: "panel-6",
+    id: "panel-5",
     horaInicio: "14:00",
     horaFin: "15:00",
     titulo: "NVIDIA Campus Ambassador",
