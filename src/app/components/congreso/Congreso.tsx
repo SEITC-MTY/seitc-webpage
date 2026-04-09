@@ -33,20 +33,6 @@ const INFO_CONGRESO = {
 
 const paneles: Panel[] = [
   {
-    id: "panel-1",
-    horaInicio: "09:00",
-    horaFin: "10:00",
-    titulo: "Available",
-    ubicacion: "Campus Monterrey",
-    // Add as many tags are required "Tag 1", "Tag2"...
-    tags: ["Tag 1"],
-    descripcion:
-      "Description",
-    ponentes: [
-      { nombre: "Nombre Ponente", cargo: "Cargo — Empresa" },
-    ],
-  },
-  {
     id: "panel-2",
     horaInicio: "10:00",
     horaFin: "11:00",
@@ -78,12 +64,12 @@ const paneles: Panel[] = [
     id: "panel-4",
     horaInicio: "12:00",
     horaFin: "13:00",
-    titulo: "Available",
+    titulo: "Networking & Coffe Break",
     ubicacion: "Campus Monterrey",
     // Add as many tags are required "Tag 1", "Tag2"...
     tags: ["Tag 1"],
     descripcion:
-      "Description",
+      "Sesion de networking para que los asistentes puedan conectar entre sí, compartir ideas y establecer contactos profesionales en un ambiente relajado, acompañado de café y snacks.",
     ponentes: [
       { nombre: "Nombre Ponente", cargo: "Cargo — Empresa" },
     ],
@@ -117,20 +103,6 @@ const paneles: Panel[] = [
       { nombre: "Alberto Muñoz", cargo: "NVIDIA Ambassador", foto:"/congreso/ponentes/AlbertoMunoz.jpeg" },
     ],
     logoEmpresa: "/congreso/ponentes/empresas/nvidia.png",
-  },
-  {
-    id: "panel-7",
-    horaInicio: "15:00",
-    horaFin: "16:00",
-    titulo: "Available",
-    ubicacion: "Campus Monterrey",
-    // Add as many tags are required "Tag 1", "Tag2"...
-    tags: ["Tag 1"],
-    descripcion:
-      "Description",
-    ponentes: [
-      { nombre: "Nombre", cargo: "Cargo" },
-    ],
   },
 ];
 
