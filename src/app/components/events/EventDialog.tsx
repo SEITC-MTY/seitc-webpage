@@ -79,7 +79,7 @@ export function EventDialog({ evento, onClose }: Props) {
                                             href={evento.linkRegistro}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="block w-full text-center bg-azul text-white font-semibold py-3.5 rounded-md hover:bg-azul-oscuro transition-colors duration-150"
+                                            className="btn-seitc block w-full text-center font-semibold py-3.5 rounded-md"
                                         >
                                             Registrarse
                                         </a>

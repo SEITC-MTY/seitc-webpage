@@ -64,14 +64,13 @@ const Footer = () => {
         <div className="space-y-4">
           <h3 className="text-sm font-bold uppercase tracking-wide text-white/90">Únete</h3>
           <p className="text-sm text-white/70 leading-relaxed">
-            Si estudias Ingeniería en Tecnologías Computacionales en el Campus
-            Monterrey, forma parte de la comunidad.
+            Únete al grupo de WhatsApp de la comunidad ITC del Campus Monterrey.
           </p>
           <a
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-azul text-white font-semibold text-sm px-6 py-3 rounded-md hover:bg-azul-oscuro transition-colors duration-150"
+            className="btn-seitc inline-block font-semibold text-sm px-6 py-3 rounded-md"
           >
             Únete a SEITC
           </a>

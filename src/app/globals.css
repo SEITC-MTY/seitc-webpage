@@ -48,6 +48,16 @@ body {
   color: #ffffff;
 }
 
+/* Botón con el gradiente azul SEITC del sitio original (indicación de presidencia) */
+.btn-seitc {
+  background-image: linear-gradient(to right, #0c2748, #0c3a6a, #0b89d0);
+  color: #ffffff;
+  transition: filter 150ms ease;
+}
+.btn-seitc:hover {
+  filter: brightness(1.12);
+}
+
 /* Etiqueta de sección institucional */
 .etiqueta {
   font-size: 0.8rem;

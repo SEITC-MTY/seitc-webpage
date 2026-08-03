@@ -59,7 +59,7 @@ const Navbar = () => {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-azul text-white font-semibold text-sm px-5 py-2.5 rounded-md hover:bg-azul-oscuro transition-colors duration-150"
+              className="btn-seitc font-semibold text-sm px-5 py-2.5 rounded-md"
             >
               Únete a SEITC
             </a>
@@ -103,7 +103,7 @@ const Navbar = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setIsMenuOpen(false)}
-              className="mt-4 text-center bg-azul text-white font-semibold px-6 py-3 rounded-md hover:bg-azul-oscuro transition-colors"
+              className="btn-seitc mt-4 text-center font-semibold px-6 py-3 rounded-md"
             >
               Únete a SEITC
             </a>

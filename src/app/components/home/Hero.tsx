@@ -26,7 +26,7 @@ export default function Hero() {
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center bg-azul text-white font-semibold px-7 py-3.5 rounded-md hover:bg-azul-oscuro transition-colors duration-150"
+                className="btn-seitc inline-flex items-center justify-center font-semibold px-7 py-3.5 rounded-md"
               >
                 Únete a SEITC
               </a>
