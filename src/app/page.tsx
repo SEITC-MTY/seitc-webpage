@@ -1,18 +1,17 @@
-import HeroSection from "./_components/main/HeroSection";
-import AboutUs from "./components/about-us/AboutUs";
+import Hero from './components/home/Hero';
+import QueEsSeitc from './components/home/QueEsSeitc';
+import FotosComunidad from './components/home/FotosComunidad';
+import EventosTeaser from './components/home/EventosTeaser';
+import UneteCta from './components/home/UneteCta';
 
 export default function Home() {
   return (
-    <div>
-      <HeroSection />
-      <section id="aboutUs">
-        <AboutUs />
-      </section>
-      {/* 
-      <div className="p-10">
-        More content
-      </div>
-      */}
-    </div>
+    <>
+      <Hero />
+      <QueEsSeitc />
+      <FotosComunidad />
+      <EventosTeaser />
+      <UneteCta />
+    </>
   );
 }
