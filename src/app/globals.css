@@ -1,112 +1,143 @@
 @import "tailwindcss";
 
+/* ────────────────────────────────────────────────────────────────────────────
+   SEITC — sistema de diseño
+   Paleta EXTRAÍDA del branding en producción (navbar/footer/logos del repo):
+   #0B89D0 (azul SEITC) · #0C3A6A · #0C2748 · #143e74 (logo) · #0c1f35 · #0b1221
+   Tintes tonales de la MISMA familia para texto/superficies. Sin colores nuevos.
+   ──────────────────────────────────────────────────────────────────────────── */
+
+@theme {
+  /* Familia navy (fondo → superficie) */
+  --color-navy-950: #0b1221;
+  --color-navy-900: #0c1f35;
+  --color-navy-850: #0C2748;
+  --color-navy-800: #0d2f55;
+  --color-navy-700: #0C3A6A;
+  --color-navy-600: #143e74;
+
+  /* Azul SEITC (acento único) + variaciones tonales */
+  --color-azul: #0B89D0;
+  --color-azul-bright: #2ea3e6;
+  --color-azul-soft: #7cc0e8;
+  --color-azul-dim: #0a6ba3;
+
+  /* Texto sobre navy (tintes fríos de la misma familia) */
+  --color-hielo: #eef6fc;
+  --color-niebla: #b8cfe0;
+  --color-bruma: #7e9cb5;
+
+  /* Tipografía */
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+}
+
 html {
   scroll-behavior: smooth;
   overscroll-behavior: none;
 }
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --primary: 220 14% 96%;
-  --primary-foreground: 220.9 39.3% 11%;
-  --secondary: 220 14% 96%;
-  --secondary-foreground: 220.9 39.3% 11%;
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 210 20% 98%;
-  --ring: 216 12% 84%;
-  --foreground: 220.9 39.3% 11%;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-navy-950);
+  color: var(--color-hielo);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
 }
 
-@layer components {
-  .btn {
-    @apply inline-flex items-center justify-center font-semibold text-white transition shadow-md rounded-xl bg-blue-800;
-    height: 48px;
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-
-  .btn:hover {
-    @apply bg-blue-700;
-  }
+::selection {
+  background: var(--color-azul);
+  color: var(--color-navy-950);
 }
 
-
-.shadow-glow {
-  box-shadow:
-    0 0 20px rgba(33, 129, 190, 0.4),
-    0 0 40px rgba(33, 129, 190, 0.2),
-    0 4px 20px rgba(0, 0, 0, 0.1);
+/* Retícula blueprint: textura de fondo firma del sitio (sin blobs, sin gradientes
+   decorativos — una retícula de ingeniería alineada a la identidad ITC). */
+.grid-blueprint {
+  background-image:
+    linear-gradient(to right, rgb(124 192 232 / 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(124 192 232 / 0.055) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+.grid-blueprint-fine {
+  background-image:
+    linear-gradient(to right, rgb(124 192 232 / 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(124 192 232 / 0.04) 1px, transparent 1px);
+  background-size: 22px 22px;
 }
 
-.text-muted-foreground {
-  color: rgba(255, 255, 255, 0.7);
+/* Kicker monoespaciado estilo terminal: `// sección` */
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-azul-bright);
 }
 
-/* Hover personalizado para botones */
-.btn-hover-glow:hover {
-  box-shadow:
-    0 0 25px rgba(255, 255, 255, 0.5),
-    0 0 50px rgba(255, 255, 255, 0.3);
-  transform: scale(1.1);
+/* Marco con ticks de esquina (detalle de plano técnico) */
+.corner-ticks {
+  position: relative;
+}
+.corner-ticks::before,
+.corner-ticks::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--color-azul);
+  border-style: solid;
+  pointer-events: none;
+}
+.corner-ticks::before {
+  top: -1px;
+  left: -1px;
+  border-width: 2px 0 0 2px;
+}
+.corner-ticks::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 2px 2px 0;
 }
 
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Subrayado animado de enlaces de navegación */
+.nav-underline {
+  position: relative;
+}
+.nav-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 0;
+  background: var(--color-azul);
+  transition: width 200ms ease;
+}
+.nav-underline:hover::after,
+.nav-underline[data-active="true"]::after {
+  width: 100%;
 }
 
-@keyframes slideUpMobile {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Cinta de fotos en marquesina (pausa al hover) */
+@keyframes marquee-x {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee-x 48s linear infinite;
+  will-change: transform;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  html { scroll-behavior: auto; }
 }
 
-/* Clase para la animación */
-.animate-slide-up {
-  animation: slideUp 0.6s ease-out forwards;
-  opacity: 0;
-}
-
-.animate-slide-up-mobile {
-  animation: slideUpMobile 0.4s ease-out forwards;
-  opacity: 0;
-}
-
-/* Variaciones de velocidad */
-.animate-slide-up-slow {
-  animation: slideUp 0.8s ease-out forwards;
-  opacity: 0;
-}
-
-.animate-slide-up-fast {
-  animation: slideUp 0.4s ease-out forwards;
-  opacity: 0;
+/* Foco visible accesible sobre fondo oscuro */
+:focus-visible {
+  outline: 2px solid var(--color-azul-bright);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
