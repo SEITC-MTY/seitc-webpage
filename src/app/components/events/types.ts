@@ -32,6 +32,8 @@ export interface Evento {
      */
     fechaLabel: string;
     fechaConfirmada: boolean;
+    /** Texto corto para la columna de fecha de la agenda (p. ej. "Agosto"). */
+    fechaColumna?: string;
     fechaISO?: string;
     fechaFinISO?: string;
     hora?: string;

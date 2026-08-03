@@ -3,10 +3,13 @@ import { useState } from 'react';
 
 import type { Evento, Semestre } from './types';
 import { eventos, SEMESTRE_LABELS } from './eventsData';
-import { EventCard } from './EventCard';
+import { AgendaRow } from './AgendaRow';
 import { EventDialog } from './EventDialog';
 
-const SEMESTRES: Semestre[] = ['AD26', 'AD25'];
+const SEMESTRES: { id: Semestre; nombre: string }[] = [
+    { id: 'AD26', nombre: 'Semestre actual' },
+    { id: 'AD25', nombre: 'Eventos pasados' },
+];
 
 export default function Events() {
     const [selectedEvento, setSelectedEvento] = useState<Evento | null>(null);
@@ -16,73 +19,59 @@ export default function Events() {
 
     return (
         <>
-            <section className="min-h-screen bg-navy-950 pt-32 pb-24 grid-blueprint">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <section className="bg-white pt-36 pb-24 min-h-screen">
+                <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                    {/* ── Encabezado ── */}
-                    <div className="mb-14" data-aos="fade-up">
-                        <p className="kicker mb-4">{'// calendario de la sociedad'}</p>
-                        <h1 className="font-display text-5xl md:text-7xl font-bold text-hielo tracking-tight">
+                    {/* Encabezado */}
+                    <div className="mb-10">
+                        <p className="etiqueta mb-3">Calendario</p>
+                        <h1 className="text-4xl md:text-5xl font-extrabold text-tinta tracking-tight">
                             Eventos
                         </h1>
-                        <p className="text-niebla text-base md:text-lg max-w-2xl mt-4 leading-relaxed">
-                            Talleres, charlas con la industria y comunidad — todo lo que SEITC
-                            organiza para la carrera, semestre por semestre.
+                        <p className="text-texto-suave text-lg max-w-2xl mt-4 leading-relaxed">
+                            Talleres, charlas con la industria y espacios de comunidad que
+                            SEITC organiza cada semestre.
                         </p>
                     </div>
 
-                    {/* ── Switcher de semestre ── */}
-                    <div className="flex items-end gap-8 md:gap-12 mb-4" data-aos="fade-up">
+                    {/* Selector de semestre */}
+                    <div className="flex gap-2 border-b border-linea mb-2">
                         {SEMESTRES.map((sem) => {
-                            const active = sem === selectedSemestre;
+                            const active = sem.id === selectedSemestre;
                             return (
                                 <button
-                                    key={sem}
-                                    onClick={() => setSelectedSemestre(sem)}
-                                    className={`group flex flex-col items-start transition-colors duration-300 ${
-                                        active ? 'cursor-default' : 'cursor-pointer'
+                                    key={sem.id}
+                                    onClick={() => setSelectedSemestre(sem.id)}
+                                    className={`px-4 py-3 text-sm font-semibold border-b-2 -mb-px transition-colors duration-150 ${
+                                        active
+                                            ? 'text-azul-oscuro border-azul'
+                                            : 'text-texto-suave border-transparent hover:text-navy-850'
                                     }`}
                                 >
-                                    <span
-                                        className={`font-display font-bold tracking-tight leading-none select-none text-[clamp(2.6rem,8vw,4.8rem)] transition-colors duration-300 ${
-                                            active ? 'text-azul-bright' : 'text-hielo/20 hover:text-hielo/45'
-                                        }`}
-                                    >
-                                        {sem}
-                                    </span>
-                                    <span
-                                        className={`block h-0.5 mt-3 transition-all duration-300 ${
-                                            active ? 'w-full bg-azul' : 'w-0 bg-transparent'
-                                        }`}
-                                    />
+                                    {sem.nombre}
+                                    <span className="hidden sm:inline">, {SEMESTRE_LABELS[sem.id].toLowerCase()}</span>
                                 </button>
                             );
                         })}
                     </div>
 
-                    <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-bruma mb-6">
-                        {SEMESTRE_LABELS[selectedSemestre]}
-                        {selectedSemestre === 'AD25' && ' · historial'}
-                    </p>
-
-                    {/* Nota de honestidad para el semestre próximo */}
+                    {/* Aviso del semestre próximo */}
                     {selectedSemestre === 'AD26' && (
-                        <p
-                            className="font-mono text-[11px] leading-relaxed tracking-wider text-niebla border-l-2 border-azul pl-4 py-1 mb-12 max-w-2xl"
-                            data-aos="fade-up"
-                        >
-                            Las fechas marcadas «por confirmar» se definen en junta de mesa;
-                            este calendario se actualiza conforme se confirmen.
+                        <p className="text-sm text-texto-suave bg-superficie border border-linea rounded-md px-4 py-3 mt-6 mb-4">
+                            Las fechas se confirman en junta de mesa. Este calendario se
+                            actualiza conforme cada evento queda confirmado.
                         </p>
                     )}
-                    {selectedSemestre === 'AD25' && <div className="mb-12" />}
+                    {selectedSemestre === 'AD25' && <div className="mt-6 mb-4" />}
 
-                    {/* ── Grid de eventos ── */}
-                    <div className="grid md:grid-cols-2 gap-5">
-                        {eventosFiltrados.map((evento, index) => (
-                            <div key={evento.id} data-aos="fade-up" data-aos-delay={Math.min(index * 60, 240)}>
-                                <EventCard evento={evento} onClick={() => setSelectedEvento(evento)} />
-                            </div>
+                    {/* Agenda */}
+                    <div>
+                        {eventosFiltrados.map((evento) => (
+                            <AgendaRow
+                                key={evento.id}
+                                evento={evento}
+                                onClick={() => setSelectedEvento(evento)}
+                            />
                         ))}
                     </div>
                 </div>

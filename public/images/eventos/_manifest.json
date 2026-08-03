@@ -1,0 +1,50 @@
+[
+  {
+    "file": "taller.jpg",
+    "query": "programming laptop workshop",
+    "source": "https://pixabay.com/photos/engineer-engineering-mechanical-4915804/",
+    "alt": "Free Engineer Engineering photo and picture"
+  },
+  {
+    "file": "leetcode.jpg",
+    "query": "code screen programming",
+    "source": "https://pixabay.com/photos/technology-computer-code-javascript-1283624/",
+    "alt": "Free Technology Computer photo and picture"
+  },
+  {
+    "file": "charla.jpg",
+    "query": "conference audience",
+    "source": "https://pixabay.com/photos/event-venue-auditorium-meeting-1597531/",
+    "alt": "Free Event Venue Auditorium photo and picture"
+  },
+  {
+    "file": "semestre-tec.jpg",
+    "query": "career mentoring meeting",
+    "source": "https://pixabay.com/photos/woman-work-office-whiteboard-4702060/",
+    "alt": "Free Woman Work photo and picture"
+  },
+  {
+    "file": "coffee.jpg",
+    "query": "coffee laptop cafe",
+    "source": "https://pixabay.com/photos/coffee-caffeine-beverage-table-2425303/",
+    "alt": "Free Coffee Caffeine photo and picture"
+  },
+  {
+    "file": "panel.jpg",
+    "query": "panel discussion event",
+    "source": "https://pixabay.com/photos/talking-and-share-the-speachs-1590832/",
+    "alt": "Free Talking And Share The photo and picture"
+  },
+  {
+    "file": "bienvenida.jpg",
+    "query": "university students group",
+    "source": "https://pixabay.com/photos/people-students-university-campus-6027028/",
+    "alt": "Free People Students photo and picture"
+  },
+  {
+    "file": "interview.jpg",
+    "query": "job interview office meeting",
+    "source": "https://pixabay.com/photos/job-interview-interview-job-3410427/",
+    "alt": "Free Job Interview Interview photo and picture"
+  }
+]

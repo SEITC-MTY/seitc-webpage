@@ -29,7 +29,7 @@ const SocialMediaIcon: React.FC<SocialMediaIconProps> = ({ header, content }) =>
         target="_blank"
         rel="noopener noreferrer"
         aria-label={header}
-        className="text-niebla hover:text-azul-bright transition-colors duration-200"
+        className="text-white/70 hover:text-white transition-colors duration-150"
       >
         {getIcon()}
       </a>
