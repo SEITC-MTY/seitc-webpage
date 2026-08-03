@@ -26,8 +26,12 @@
   --color-hielo: #eef6fc;
   --color-niebla: #b8cfe0;
   --color-bruma: #7e9cb5;
+}
 
-  /* Tipografía */
+/* Tipografía: `inline` es OBLIGATORIO aquí — los var(--font-*) de next/font
+   viven en <body>, y sin inline el token se resuelve en :root (donde no
+   existen) y todo cae al fallback del sistema. */
+@theme inline {
   --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
@@ -41,7 +45,7 @@ html {
 body {
   background: var(--color-navy-950);
   color: var(--color-hielo);
-  font-family: var(--font-sans);
+  font-family: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -67,7 +71,7 @@ body {
 
 /* Kicker monoespaciado estilo terminal: `// sección` */
 .kicker {
-  font-family: var(--font-mono);
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
   font-size: 0.75rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;

@@ -65,7 +65,7 @@ const iniciales = (nombre: string) =>
 
 function MemberCard({ integrante }: { integrante: Integrante }) {
   return (
-    <div className="flex flex-col items-center text-center gap-3 bg-navy-900 border border-hielo/10 hover:border-azul/50 transition-colors duration-200 px-4 py-7">
+    <div className="flex flex-col items-center text-center gap-3 h-full bg-navy-900 border border-hielo/10 hover:border-azul/50 transition-colors duration-200 px-4 py-7">
       <div className="w-16 h-16 rounded-full border-2 border-azul bg-navy-850 flex items-center justify-center">
         <span className="font-display text-hielo font-bold text-lg tracking-wide">
           {iniciales(integrante.nombre)}
@@ -116,7 +116,7 @@ export default function Integrantes() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {mesaActual.map((integrante, i) => (
-              <div key={integrante.nombre} data-aos="fade-up" data-aos-delay={Math.min(i * 50, 250)}>
+              <div key={integrante.nombre} className="h-full" data-aos="fade-up" data-aos-delay={Math.min(i * 50, 250)}>
                 <MemberCard integrante={integrante} />
               </div>
             ))}
