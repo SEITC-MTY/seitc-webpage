@@ -1,9 +1,6 @@
-import Events from "seitc/app/components/events/Events";
+import { redirect } from 'next/navigation';
 
-export default function EventsPage() {
-  return (
-    <div>
-      <Events />
-    </div>
-  );
+/** Ruta legacy: el sitio anterior usaba /events. */
+export default function EventsLegacyRedirect() {
+  redirect('/eventos');
 }
