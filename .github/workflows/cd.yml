@@ -24,11 +24,16 @@ jobs:
 
       - name: Sync files
         run: |
-          rsync -av --delete --exclude '.git' ./ deploy/
+          # 'deploy' se excluye para no copiar el destino dentro de sí mismo:
+          # sin la exclusión, rsync entra en recursión, los archivos "desaparecen"
+          # a mitad de la copia y el paso truena con código 24.
+          rsync -a --delete --exclude '.git' --exclude 'deploy' ./ deploy/
+          # limpia copias anidadas que dejaron corridas anteriores del bug
+          rm -rf deploy/deploy
           cd deploy
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add .
+          git add -A
           git commit -m "Sync from SEITC-MTY" || echo "No changes to commit"
           git push origin main
           
