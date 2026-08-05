@@ -1,29 +1,25 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Archivo } from "next/font/google";
 import "./globals.css";
 import Footer from "./_components/UI/footer/Footer";
 import Navbar from "./_components/UI/navbar/Navbar";
-import AOSProvider from "./_components/AOSProvider";
-import '@radix-ui/themes/styles.css';
-import { Theme } from '@radix-ui/themes';
 
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "SEITC",
-  description: "Sociedad Estudiantil de Ingenieria en Tecnologias Computacionales",
+  title: {
+    default: "SEITC | Sociedad de Estudiantes de ITC, Tec de Monterrey",
+    template: "%s | SEITC",
+  },
+  description:
+    "Sociedad de Estudiantes de Ingeniería en Tecnologías Computacionales del Tecnológico de Monterrey, Campus Monterrey.",
   icons: {
-    icon: '/favicon.ico',
-  }
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -32,20 +28,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        suppressHydrationWarning
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
-      >
-        <Theme>
-          <AOSProvider>
-            <Navbar />
-            <main className="pt-20">
-              {children}
-            </main>
-            <Footer />
-          </AOSProvider>
-        </Theme>
+    <html lang="es">
+      <body suppressHydrationWarning className={`${archivo.variable} antialiased bg-white`}>
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

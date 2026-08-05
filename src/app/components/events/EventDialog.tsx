@@ -1,17 +1,7 @@
 import Image from 'next/image';
-import { Clock, Calendar, MapPin } from 'lucide-react';
-import { Button } from 'seitc/app/_components/UI/Button2';
-import { Badge } from 'seitc/app/_components/UI/Badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from 'seitc/app/_components/UI/Dialog';
 import type { Evento } from './types';
-import {
-    getEventoIconStyle,
-    getEventoIcon,
-    getEventoImage,
-    getEventoColor,
-    getTipoLabel,
-    formatFecha,
-} from './eventHelpers';
+import { getEventoFoto, getEventoLogo, getTipoLabel } from './eventHelpers';
 
 interface Props {
     evento: Evento | null;
@@ -19,98 +9,88 @@ interface Props {
 }
 
 export function EventDialog({ evento, onClose }: Props) {
+    const foto = evento ? getEventoFoto(evento) : null;
+    const logo = evento ? getEventoLogo(evento) : null;
+
     return (
         <Dialog open={!!evento} onOpenChange={onClose}>
-            <DialogContent className="max-w-2xl bg-white border-0 shadow-xl rounded-2xl">
-                <DialogHeader>
-                    <DialogTitle className="text-2xl font-bold text-blue-800">
-                        {evento?.titulo}
-                    </DialogTitle>
-                </DialogHeader>
-
+            <DialogContent className="max-w-xl bg-white border border-linea text-texto rounded-lg p-0 overflow-hidden max-h-[85dvh] overflow-y-auto">
                 {evento && (
-                    <div className="space-y-6">
-                        {/* Event icon / logo */}
-                        <div className={`w-16 h-16 rounded-xl flex items-center justify-center ${getEventoIconStyle(evento.tipo).bg}`}>
-                            {evento.estado === 'proximo'
-                                ? getEventoIcon(evento.tipo, `w-8 h-8 ${getEventoIconStyle(evento.tipo).icon}`)
-                                : <Image
-                                    src={getEventoImage(evento)}
-                                    alt={evento.titulo}
-                                    width={48}
-                                    height={48}
-                                    className="w-12 h-12 object-contain"
-                                  />
-                            }
-                        </div>
+                    <>
+                        {/* Imagen de cabecera */}
+                        {foto ? (
+                            <div className="relative aspect-[2/1] w-full">
+                                <Image src={foto} alt="" fill sizes="640px" className="object-cover" />
+                            </div>
+                        ) : logo ? (
+                            <div className="flex items-center justify-center bg-superficie border-b border-linea py-8">
+                                <Image src={logo} alt="" width={96} height={96} className="max-h-20 w-auto object-contain" />
+                            </div>
+                        ) : null}
 
-                        {/* Badges */}
-                        <div className="flex items-center gap-3 flex-wrap">
-                            <Badge className={getEventoColor(evento.tipo)}>
-                                {getTipoLabel(evento.tipo)}
-                            </Badge>
-                            {evento.estado === 'pasado' && (
-                                <Badge variant="outline" className="text-gray-600 border-gray-300">
-                                    Evento Pasado
-                                </Badge>
-                            )}
-                        </div>
-
-                        {/* Description */}
-                        {typeof evento.descripcion === 'object' && 'bullets' in evento.descripcion ? (
-                            <>
-                                <p className="text-gray-600 leading-relaxed">
-                                    {evento.descripcion.texto}
+                        <div className="p-7">
+                            <DialogHeader className="space-y-2">
+                                <p className="text-xs font-bold uppercase tracking-wide text-azul-oscuro">
+                                    {getTipoLabel(evento.tipo)}
+                                    {evento.estado === 'pasado' && ', evento pasado'}
                                 </p>
-                                <ul className="text-gray-600 leading-relaxed list-disc pl-6 space-y-2">
-                                    {evento.descripcion.bullets.map((item, idx) => (
-                                        <li key={idx}>{item}</li>
+                                <DialogTitle className="text-2xl font-extrabold text-tinta leading-tight">
+                                    {evento.titulo}
+                                </DialogTitle>
+                            </DialogHeader>
+
+                            <div className="mt-5 space-y-5">
+                                {/* Descripción */}
+                                {typeof evento.descripcion === 'object' && 'bullets' in evento.descripcion ? (
+                                    <>
+                                        <p className="text-texto leading-relaxed">{evento.descripcion.texto}</p>
+                                        <ul className="space-y-2 list-disc pl-5 text-texto leading-relaxed">
+                                            {evento.descripcion.bullets.map((item, idx) => (
+                                                <li key={idx}>{item}</li>
+                                            ))}
+                                        </ul>
+                                    </>
+                                ) : (
+                                    <p className="text-texto leading-relaxed">{evento.descripcion as string}</p>
+                                )}
+
+                                {/* Datos del evento */}
+                                <dl className="border-t border-linea pt-5 space-y-2.5 text-sm">
+                                    <div className="flex gap-3">
+                                        <dt className="w-16 shrink-0 font-bold text-navy-850">Fecha</dt>
+                                        <dd className="text-texto">{evento.fechaLabel}</dd>
+                                    </div>
+                                    <div className="flex gap-3">
+                                        <dt className="w-16 shrink-0 font-bold text-navy-850">Lugar</dt>
+                                        <dd className="text-texto">{evento.ubicacion}</dd>
+                                    </div>
+                                    {evento.hora && (
+                                        <div className="flex gap-3">
+                                            <dt className="w-16 shrink-0 font-bold text-navy-850">Horario</dt>
+                                            <dd className="text-texto">{evento.hora}</dd>
+                                        </div>
+                                    )}
+                                </dl>
+
+                                {/* Registro: solo con enlace real */}
+                                {evento.estado === 'proximo' &&
+                                    (evento.linkRegistro ? (
+                                        <a
+                                            href={evento.linkRegistro}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="btn-seitc block w-full text-center font-semibold py-3.5 rounded-md"
+                                        >
+                                            Registrarse
+                                        </a>
+                                    ) : (
+                                        <p className="text-sm text-texto-suave bg-superficie border border-linea rounded-md px-4 py-3 text-center">
+                                            El registro se abre cuando el evento se confirma en junta de mesa.
+                                        </p>
                                     ))}
-                                </ul>
-                            </>
-                        ) : (
-                            <p className="text-gray-600 leading-relaxed">
-                                {evento.descripcion as string}
-                            </p>
-                        )}
-
-                        {/* Meta info */}
-                        <div className="space-y-3 text-sm">
-                            <div className="flex items-center gap-3 text-gray-600">
-                                <Calendar className="h-5 w-5 text-blue-600 shrink-0" />
-                                <span className="font-medium text-gray-800">
-                                    {formatFecha(evento.fecha)}
-                                    {evento.fechaFin && ` — ${formatFecha(evento.fechaFin)}`}
-                                </span>
                             </div>
-                            <div className="flex items-center gap-3 text-gray-600">
-                                <MapPin className="h-5 w-5 text-blue-600 shrink-0" />
-                                <span className="font-medium text-gray-800">{evento.ubicacion}</span>
-                            </div>
-                            {evento.hora && (
-                                <div className="flex items-center gap-3 text-gray-600">
-                                    <Clock className="h-5 w-5 text-blue-600 shrink-0" />
-                                    <span className="font-medium text-gray-800">{evento.hora}</span>
-                                </div>
-                            )}
                         </div>
-
-                        {/* Register button — upcoming only */}
-                        {evento.estado === 'proximo' && (
-                            <Button
-                                className="w-full bg-blue-700 hover:bg-blue-600 text-white rounded-xl py-3 font-semibold transition-all duration-300 hover:scale-105"
-                                onClick={() => {
-                                    if (evento.linkRegistro) {
-                                        window.open(evento.linkRegistro, '_blank');
-                                    } else {
-                                        alert('El registro para este evento estará disponible próximamente.');
-                                    }
-                                }}
-                            >
-                                Registrarse
-                            </Button>
-                        )}
-                    </div>
+                    </>
                 )}
             </DialogContent>
         </Dialog>

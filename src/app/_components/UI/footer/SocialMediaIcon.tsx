@@ -24,11 +24,12 @@ const SocialMediaIcon: React.FC<SocialMediaIconProps> = ({ header, content }) =>
 
   return (
     <li>
-      <a 
-        href={content} 
-        target="_blank" 
+      <a
+        href={content}
+        target="_blank"
         rel="noopener noreferrer"
-        className="hover:opacity-75 transition-opacity"
+        aria-label={header}
+        className="text-white/70 hover:text-white transition-colors duration-150"
       >
         {getIcon()}
       </a>

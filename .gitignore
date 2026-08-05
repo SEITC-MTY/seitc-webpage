@@ -44,3 +44,6 @@ next-env.d.ts
 
 CLAUDE.md
 .claude
+
+# capturas de verificación visual local (reporte del reskin)
+/.verify-shots

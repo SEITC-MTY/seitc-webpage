@@ -1,9 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import AOS from "aos";
-import "aos/dist/aos.css";
 
 interface Integrante {
   nombre: string;
@@ -13,15 +11,26 @@ interface Integrante {
 interface Periodo {
   id: string;
   titulo: string;
-  subtitulo: string;
   integrantes: Integrante[];
 }
 
-const periodos: Periodo[] = [
+/* Mesa directiva vigente, gestión 2026-2027. */
+const mesaActual: Integrante[] = [
+  { nombre: "Juan Antonio Rodríguez Reyna", puesto: "Presidencia" },
+  { nombre: "Iván Gabriel Espinosa García", puesto: "Vicepresidencia" },
+  { nombre: "Armando Javier Flores Salazar", puesto: "Dirección de Proyectos" },
+  { nombre: "Mariano Guerrero Flores", puesto: "Dirección de Finanzas" },
+  { nombre: "Mario Giovanni González López", puesto: "Dirección de Responsabilidad Social" },
+  { nombre: "Ana Elisa Celaya Montalvo", puesto: "Dirección de Comunicación" },
+  { nombre: "Daniella Vázquez Esparza", puesto: "Dirección de Vinculación" },
+  { nombre: "Leonel Francisco Bailón Sifuentes", puesto: "Dirección de Educación" },
+];
+
+/* Gestiones anteriores, preservadas íntegras. */
+const periodosAnteriores: Periodo[] = [
   {
     id: "2025-2026",
-    titulo: "AGOSTO 2025 - JULIO 2026",
-    subtitulo: "AGOSTO 2025 - JULIO 2026",
+    titulo: "Agosto 2025 a julio 2026",
     integrantes: [
       { nombre: "Diego García", puesto: "Presidente" },
       { nombre: "Marcelo Sias", puesto: "Vicepresidente" },
@@ -35,8 +44,7 @@ const periodos: Periodo[] = [
   },
   {
     id: "2024-2025",
-    titulo: "AGOSTO 2024 - JULIO 2025",
-    subtitulo: "AGOSTO 2024 - JULIO 2025",
+    titulo: "Agosto 2024 a julio 2025",
     integrantes: [
       { nombre: "Jose Guerrero", puesto: "Presidente" },
       { nombre: "Felipe Alonzo", puesto: "Vicepresidente" },
@@ -48,130 +56,104 @@ const periodos: Periodo[] = [
   },
 ];
 
+const iniciales = (nombre: string) =>
+  nombre
+    .split(" ")
+    .slice(0, 2)
+    .map((n) => n[0])
+    .join("");
+
+/* Tarjeta de integrante. El avatar con iniciales es un marcador de posición:
+   se sustituye por la fotografía de cada integrante cuando esté disponible. */
+function MemberCard({ integrante }: { integrante: Integrante }) {
+  return (
+    <div className="flex flex-col items-center text-center gap-3 h-full bg-white border border-linea rounded-lg px-4 py-7">
+      <div className="w-20 h-20 rounded-full bg-azul-claro border border-linea flex items-center justify-center">
+        <span className="text-azul-oscuro font-bold text-xl">{iniciales(integrante.nombre)}</span>
+      </div>
+      <div>
+        <p className="font-bold text-tinta text-sm leading-snug">{integrante.nombre}</p>
+        <p className="text-xs text-texto-suave mt-1.5 leading-relaxed">{integrante.puesto}</p>
+      </div>
+    </div>
+  );
+}
+
 export default function Integrantes() {
-  const [openId, setOpenId] = useState<string | null>(periodos[0].id);
+  const [openId, setOpenId] = useState<string | null>(null);
 
-  useEffect(() => {
-    AOS.init({ duration: 700, easing: "ease-out-cubic", once: true, offset: 80 });
-  }, []);
-
-  const toggle = (id: string) => {
-    setOpenId((prev) => (prev === id ? null : id));
-  };
+  const toggle = (id: string) => setOpenId((prev) => (prev === id ? null : id));
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-[#0b1221] via-[#152e59] to-[#0b1221] pt-28 pb-20 px-4">
-      {/* Header */}
-      <div className="text-center mb-12">
-        <h1 className="text-5xl md:text-6xl font-bold mb-4 text-white">
-          INTEGRANTES
-        </h1>
-        <p className="text-white/70 text-base md:text-lg">
-          Conoce a las personas que han formado parte de nuestra comunidad
-        </p>
-        <div className="flex justify-center mt-6">
-          <div className="w-32 h-px bg-white/20 mx-auto" />
-        </div>
-      </div>
+    <section className="bg-white pt-36 pb-24 min-h-screen">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      {/* Accordion Cards */}
-      <div className="max-w-3xl mx-auto flex flex-col gap-4 mb-8">
-        {periodos.map((periodo, idx) => {
-          const isOpen = openId === periodo.id;
-          return (
-            <div
-              key={periodo.id}
-              data-aos="fade-up"
-              data-aos-delay={idx * 100}
-              className="rounded-2xl overflow-hidden border border-white/40 shadow-md"
-            >
-              {/* Card Header*/}
-              <button
-                className="w-full flex items-center justify-between px-6 py-5 bg-gradient-to-r from-[#0C2748] via-[#0C3A6A] to-[#0B89D0] hover:brightness-110 transition-all duration-300 cursor-pointer"
-                onClick={() => toggle(periodo.id)}
-                aria-expanded={isOpen}
-              >
-                <div className="text-left">
-                  <p className="text-white font-extrabold text-lg md:text-xl tracking-wide">
-                    {periodo.titulo}
-                  </p>
-                  <p className="text-white/50 text-xs mt-0.5 font-medium tracking-wider">
-                    {periodo.subtitulo}
-                  </p>
-                </div>
-                <ChevronDown
-                  className={`text-white/70 w-5 h-5 flex-shrink-0 transition-transform duration-300 ${
-                    isOpen ? "rotate-180" : "rotate-0"
-                  }`}
-                />
-              </button>
-
-              {/* Accordion Body */}
-              <div
-                className={`bg-white transition-all duration-500 ease-in-out overflow-hidden ${
-                  isOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
-                }`}
-              >
-                <div className="px-6 py-8">
-                <div className="flex flex-col gap-6">
-                    {Array.from({ length: Math.ceil(periodo.integrantes.length / 4) }, (_, rowIdx) =>
-                      periodo.integrantes.slice(rowIdx * 4, rowIdx * 4 + 4)
-                    ).map((fila, rowIdx) => (
-                      <div key={rowIdx} className="flex justify-center gap-6 w-full">
-                        {fila.map((integrante, idx) => (
-                          <div
-                            key={idx}
-                            className="flex flex-col items-center text-center gap-2"
-                            style={{ width: "calc(25% - 18px)" }}
-                          >
-                            {/* Avatar placeholder*/}
-                            <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-[#0C2748] via-[#0C3A6A] to-[#0B89D0] shadow-sm flex items-center justify-center flex-shrink-0">
-                              <span className="text-white font-bold text-lg tracking-wide">
-                                {integrante.nombre
-                                  .split(" ")
-                                  .slice(0, 2)
-                                  .map((n) => n[0])
-                                  .join("")}
-                              </span>
-                            </div>
-                            <div>
-                              <p className="font-bold text-gray-900 text-sm leading-tight">
-                                {integrante.nombre}
-                              </p>
-                              <p className="text-gray-500 text-xs mt-0.5 leading-tight">
-                                {integrante.puesto}
-                              </p>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Card */}
-      <div data-aos="fade-up" data-aos-delay="200" className="max-w-3xl mx-auto">
-        <div className="bg-white/95 rounded-2xl shadow-lg px-8 py-8 flex flex-col items-center text-center">
-          <h2 className="text-xl font-bold text-gray-900 mb-1">
-            ¿Quieres formar parte de{" "}
-            <span className="text-blue-700">SEITC</span>?
-          </h2>
-          <p className="text-gray-500 text-sm mb-6">
-            Únete a nuestra comunidad e impulsa tu carrera en tecnología
+        {/* Encabezado */}
+        <div className="mb-12">
+          <p className="etiqueta mb-3">Mesa directiva</p>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-tinta tracking-tight">
+            Integrantes
+          </h1>
+          <p className="text-texto-suave text-lg max-w-2xl mt-4 leading-relaxed">
+            Las personas que dirigen SEITC en la gestión vigente y quienes
+            construyeron la sociedad en gestiones anteriores.
           </p>
-          <a
-            href="https://chat.whatsapp.com/Ejj8hsLdqlXAuHBHQ9bJVG"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-2xl px-8 py-4 font-semibold text-white text-base bg-gradient-to-r from-[#0C2748] via-[#0C3A6A] to-[#0B89D0] hover:brightness-110 transition-all"
-          >
-            Únete ahora
-          </a>
+        </div>
+
+        {/* Gestión vigente */}
+        <div className="mb-16">
+          <div className="flex items-center gap-3 mb-6">
+            <h2 className="text-2xl font-extrabold text-tinta">Gestión 2026 a 2027</h2>
+            <span className="text-xs font-bold uppercase tracking-wide text-azul-oscuro bg-azul-claro rounded-full px-3 py-1">
+              Vigente
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {mesaActual.map((integrante) => (
+              <MemberCard key={integrante.nombre} integrante={integrante} />
+            ))}
+          </div>
+        </div>
+
+        {/* Gestiones anteriores */}
+        <div>
+          <h2 className="text-2xl font-extrabold text-tinta mb-6">Gestiones anteriores</h2>
+          <div className="flex flex-col gap-3">
+            {periodosAnteriores.map((periodo) => {
+              const isOpen = openId === periodo.id;
+              return (
+                <div key={periodo.id} className="border border-linea rounded-lg overflow-hidden">
+                  <button
+                    className="w-full flex items-center justify-between px-6 py-4 bg-superficie hover:bg-azul-claro transition-colors duration-150"
+                    onClick={() => toggle(periodo.id)}
+                    aria-expanded={isOpen}
+                  >
+                    <span className="font-bold text-navy-850">{periodo.titulo}</span>
+                    <ChevronDown
+                      className={`text-texto-suave w-5 h-5 shrink-0 transition-transform duration-200 ${
+                        isOpen ? "rotate-180" : "rotate-0"
+                      }`}
+                    />
+                  </button>
+
+                  {isOpen && (
+                    <ul className="grid sm:grid-cols-2 gap-x-10 gap-y-1 px-6 py-5 bg-white">
+                      {periodo.integrantes.map((integrante) => (
+                        <li
+                          key={integrante.nombre}
+                          className="flex items-baseline justify-between gap-4 border-b border-linea/70 py-2.5"
+                        >
+                          <span className="text-tinta text-sm font-semibold">{integrante.nombre}</span>
+                          <span className="text-xs text-texto-suave text-right">{integrante.puesto}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

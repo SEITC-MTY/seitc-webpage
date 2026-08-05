@@ -1,112 +1,80 @@
 @import "tailwindcss";
 
+/*
+  SEITC, sistema de diseño institucional.
+  Paleta tomada del branding existente del sitio:
+  #0B89D0 (azul SEITC), #0C3A6A, #0C2748, #143e74, #0c1f35, #0b1221.
+  Tema claro, un solo acento azul, tipografía Archivo.
+*/
+
+@theme {
+  /* Azul SEITC y familia navy */
+  --color-azul: #0b89d0;
+  --color-azul-oscuro: #0a6ba3;
+  --color-azul-claro: #e8f4fb;
+  --color-navy-950: #0b1221;
+  --color-navy-900: #0c1f35;
+  --color-navy-850: #0c2748;
+  --color-navy-700: #0c3a6a;
+  --color-navy-600: #143e74;
+
+  /* Neutros fríos derivados de la familia navy */
+  --color-tinta: #13202f;
+  --color-texto: #2c3e50;
+  --color-texto-suave: #5a6b7c;
+  --color-linea: #dce4ec;
+  --color-superficie: #f4f7fa;
+}
+
+/* Tipografía: los var() de next/font viven en <body>; estos tokens deben ir
+   en @theme inline o se resuelven en :root y caen al fallback del sistema. */
+@theme inline {
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+}
+
 html {
   scroll-behavior: smooth;
-  overscroll-behavior: none;
-}
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --primary: 220 14% 96%;
-  --primary-foreground: 220.9 39.3% 11%;
-  --secondary: 220 14% 96%;
-  --secondary-foreground: 220.9 39.3% 11%;
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 210 20% 98%;
-  --ring: 216 12% 84%;
-  --foreground: 220.9 39.3% 11%;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: var(--color-texto);
+  font-family: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-@layer components {
-  .btn {
-    @apply inline-flex items-center justify-center font-semibold text-white transition shadow-md rounded-xl bg-blue-800;
-    height: 48px;
-    padding-left: 24px;
-    padding-right: 24px;
+::selection {
+  background: var(--color-azul);
+  color: #ffffff;
+}
+
+/* Botón con el gradiente azul SEITC del sitio original (indicación de presidencia) */
+.btn-seitc {
+  background-image: linear-gradient(to right, #0c2748, #0c3a6a, #0b89d0);
+  color: #ffffff;
+  transition: filter 150ms ease;
+}
+.btn-seitc:hover {
+  filter: brightness(1.12);
+}
+
+/* Etiqueta de sección institucional */
+.etiqueta {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-azul-oscuro);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-azul);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
-
-  .btn:hover {
-    @apply bg-blue-700;
-  }
-}
-
-
-.shadow-glow {
-  box-shadow:
-    0 0 20px rgba(33, 129, 190, 0.4),
-    0 0 40px rgba(33, 129, 190, 0.2),
-    0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.text-muted-foreground {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-/* Hover personalizado para botones */
-.btn-hover-glow:hover {
-  box-shadow:
-    0 0 25px rgba(255, 255, 255, 0.5),
-    0 0 50px rgba(255, 255, 255, 0.3);
-  transform: scale(1.1);
-}
-
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideUpMobile {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Clase para la animación */
-.animate-slide-up {
-  animation: slideUp 0.6s ease-out forwards;
-  opacity: 0;
-}
-
-.animate-slide-up-mobile {
-  animation: slideUpMobile 0.4s ease-out forwards;
-  opacity: 0;
-}
-
-/* Variaciones de velocidad */
-.animate-slide-up-slow {
-  animation: slideUp 0.8s ease-out forwards;
-  opacity: 0;
-}
-
-.animate-slide-up-fast {
-  animation: slideUp 0.4s ease-out forwards;
-  opacity: 0;
 }
