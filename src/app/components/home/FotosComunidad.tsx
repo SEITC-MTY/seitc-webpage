@@ -3,6 +3,30 @@ import Image from 'next/image';
 /* Fotografías reales de la comunidad (archivo histórico del repositorio). */
 const fotos = [
   {
+    src: '/images/semana-ad26/equipo-y-asistentes.jpg',
+    alt: 'Mesa directiva de SEITC con los asistentes a la bienvenida de ITC, agosto 2026',
+  },
+  {
+    src: '/images/semana-ad26/explora-ingenierias-stand.jpg',
+    alt: 'Stand de ITC en Explora Ingenierías con estudiantes de nuevo ingreso',
+  },
+  {
+    src: '/images/semana-ad26/leetcode-sesion.jpg',
+    alt: 'Sesión de LeetCode & DSAs 101 con estudiantes resolviendo problemas',
+  },
+  {
+    src: '/images/semana-ad26/equipo-presentando-itc.jpg',
+    alt: 'Integrantes de SEITC presentando qué es ITC a la generación de nuevo ingreso',
+  },
+  {
+    src: '/images/semana-ad26/equipo-finish-it-friday.jpg',
+    alt: 'Integrantes de SEITC después de Finish It Friday',
+  },
+  {
+    src: '/images/semana-ad26/leetcode-participacion.jpg',
+    alt: 'Estudiantes participando en la sesión de LeetCode & DSAs 101',
+  },
+  {
     src: '/assets/legacy/viaje-nyc-2025/columbia-university.jpg',
     alt: 'Estudiantes de SEITC durante el viaje académico en Columbia University',
   },
