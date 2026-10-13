@@ -30,9 +30,11 @@ jobs:
           rsync -a --delete --exclude '.git' --exclude 'deploy' ./ deploy/
           # limpia copias anidadas que dejaron corridas anteriores del bug
           rm -rf deploy/deploy
+          # Vercel solo despliega commits de miembros del equipo: el autor debe ser
+          # la cuenta dueña del repo espejo, no github-actions (queda BLOCKED).
           cd deploy
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
+          git config user.name "seitcMty"
+          git config user.email "seitcMty@users.noreply.github.com"
           git add -A
           git commit -m "Sync from SEITC-MTY" || echo "No changes to commit"
           git push origin main
