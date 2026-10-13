@@ -24,9 +24,9 @@ export const getTipoLabel = (tipo: EventoTipo | string): string => {
  */
 export const getEventoFoto = (evento: Evento): string | null => {
     switch (evento.id) {
-        case 'bienvenida-ad26':                  return '/images/semana-ad26/bienvenida-equipo.jpg';
+        case 'bienvenida-ad26':                  return '/images/galeria-ad26/bienvenida-equipo.jpg';
         case 'portfolio-ai-ad26':                return '/images/eventos/taller.jpg';
-        case 'leetcode-dsa-ad26':                return '/images/semana-ad26/leetcode-sesion.jpg';
+        case 'leetcode-dsa-ad26':                return '/images/galeria-ad26/leetcode-sesion.jpg';
         case 'prep-to-intern-1-ad26':            return '/images/eventos/charla.jpg';
         case 'prep-to-intern-2-ad26':            return '/images/eventos/panel.jpg';
         case 'interview-prep-ad26':              return '/images/eventos/interview.jpg';

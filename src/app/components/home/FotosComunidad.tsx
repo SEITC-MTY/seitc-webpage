@@ -1,30 +1,38 @@
 import Image from 'next/image';
 
-/* Fotografías reales de la comunidad (archivo histórico del repositorio). */
+/* Fotografías reales de la comunidad (semana de bienvenida y eventos 2026, más archivo histórico). */
 const fotos = [
   {
-    src: '/images/semana-ad26/equipo-y-asistentes.jpg',
+    src: '/images/galeria-ad26/equipo-y-asistentes.jpg',
     alt: 'Mesa directiva de SEITC con los asistentes a la bienvenida de ITC, agosto 2026',
   },
   {
-    src: '/images/semana-ad26/explora-ingenierias-stand.jpg',
+    src: '/images/galeria-ad26/explora-ingenierias-stand.jpg',
     alt: 'Stand de ITC en Explora Ingenierías con estudiantes de nuevo ingreso',
   },
   {
-    src: '/images/semana-ad26/leetcode-sesion.jpg',
+    src: '/images/galeria-ad26/leetcode-sesion.jpg',
     alt: 'Sesión de LeetCode & DSAs 101 con estudiantes resolviendo problemas',
   },
   {
-    src: '/images/semana-ad26/equipo-presentando-itc.jpg',
+    src: '/images/galeria-ad26/equipo-presentando-itc.jpg',
     alt: 'Integrantes de SEITC presentando qué es ITC a la generación de nuevo ingreso',
   },
   {
-    src: '/images/semana-ad26/equipo-finish-it-friday.jpg',
-    alt: 'Integrantes de SEITC después de Finish It Friday',
+    src: '/images/galeria-ad26/duolingo-asistentes.jpg',
+    alt: 'Asistentes al evento con Duolingo sentados en el auditorio',
   },
   {
-    src: '/images/semana-ad26/leetcode-participacion.jpg',
-    alt: 'Estudiantes participando en la sesión de LeetCode & DSAs 101',
+    src: '/images/galeria-ad26/bloomberg-dia2-grupo.jpg',
+    alt: 'Estudiantes y ponentes durante el Bloomberg Engineering Workshop, día 2',
+  },
+  {
+    src: '/images/galeria-ad26/bloomberg-dia1-asistentes.jpg',
+    alt: 'Estudiantes atentos durante el Bloomberg Engineering Workshop, día 1',
+  },
+  {
+    src: '/images/galeria-ad26/bloomberg-dia2-taller.jpg',
+    alt: 'Dinámica de resolución de problemas en el Bloomberg Engineering Workshop',
   },
   {
     src: '/assets/legacy/viaje-nyc-2025/columbia-university.jpg',
@@ -35,20 +43,12 @@ const fotos = [
     alt: 'Visita de SEITC a las oficinas de Microsoft en Nueva York',
   },
   {
-    src: '/assets/legacy/eventos/prep2intern-2024-duolingo.jpg',
-    alt: 'Charla Prep2Intern con un estudiante que hizo internship en Duolingo',
-  },
-  {
     src: '/assets/legacy/viaje-nyc-2025/oficina-meta-01.jpg',
     alt: 'Visita de SEITC a las oficinas de Meta en Nueva York',
   },
   {
     src: '/assets/legacy/eventos/itc-talks-oracle-2025.jpg',
     alt: 'Sesión de ITC Talks con Oracle en el campus',
-  },
-  {
-    src: '/assets/legacy/viaje-nyc-2025/oficina-mongodb-01.jpg',
-    alt: 'Visita de SEITC a las oficinas de MongoDB en Nueva York',
   },
 ];
 
