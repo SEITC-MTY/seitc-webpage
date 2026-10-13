@@ -27,6 +27,10 @@ export const getEventoFoto = (evento: Evento): string | null => {
         case 'bienvenida-ad26':                  return '/images/galeria-ad26/bienvenida-equipo.jpg';
         case 'portfolio-ai-ad26':                return '/images/eventos/taller.jpg';
         case 'leetcode-dsa-ad26':                return '/images/galeria-ad26/leetcode-sesion.jpg';
+        case 'explora-ingenierias-ad26':         return '/images/galeria/explora/02.jpg';
+        case 'finish-it-friday-1-ad26':          return '/images/galeria/finish-it-friday/01.jpg';
+        case 'bloomberg-workshop-ad26':          return '/images/galeria/bloomberg/08.jpg';
+        case 'duolingo-ad26':                    return '/images/galeria/duolingo/01.jpg';
         case 'prep-to-intern-1-ad26':            return '/images/eventos/charla.jpg';
         case 'prep-to-intern-2-ad26':            return '/images/eventos/panel.jpg';
         case 'interview-prep-ad26':              return '/images/eventos/interview.jpg';

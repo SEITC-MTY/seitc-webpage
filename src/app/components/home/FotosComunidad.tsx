@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 /* Fotografías reales de la comunidad (semana de bienvenida y eventos 2026, más archivo histórico). */
 const fotos = [
@@ -66,6 +67,13 @@ export default function FotosComunidad() {
             lo que la comunidad ITC ha vivido con SEITC.
           </p>
         </div>
+
+        <Link
+          href="/galeria"
+          className="inline-block mb-8 text-sm font-semibold text-azul-oscuro underline underline-offset-4 hover:text-navy-850"
+        >
+          Ver la galería completa
+        </Link>
 
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
           {fotos.map((foto) => (
