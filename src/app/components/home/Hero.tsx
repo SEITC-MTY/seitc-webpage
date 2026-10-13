@@ -39,12 +39,12 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Fotografía de la mesa */}
+          {/* Fotografía de la mesa directiva vigente */}
           <figure className="rounded-lg overflow-hidden border border-linea shadow-sm">
             <div className="relative aspect-[4/3]">
               <Image
-                src="/images/Toma-Protesta.jpeg"
-                alt="Mesa directiva de SEITC en la toma de protesta"
+                src="/images/integrantes/mesa-directiva-2026-2027.jpg"
+                alt="Mesa directiva de SEITC, gestión 2026 a 2027"
                 fill
                 sizes="(min-width: 1024px) 45vw, 100vw"
                 priority

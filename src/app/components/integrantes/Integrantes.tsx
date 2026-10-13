@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 
 interface Integrante {
   nombre: string;
   puesto: string;
+  foto?: string;
 }
 
 interface Periodo {
@@ -16,14 +18,14 @@ interface Periodo {
 
 /* Mesa directiva vigente, gestión 2026-2027. */
 const mesaActual: Integrante[] = [
-  { nombre: "Juan Antonio Rodríguez Reyna", puesto: "Presidencia" },
-  { nombre: "Iván Gabriel Espinosa García", puesto: "Vicepresidencia" },
-  { nombre: "Armando Javier Flores Salazar", puesto: "Dirección de Proyectos" },
-  { nombre: "Mariano Guerrero Flores", puesto: "Dirección de Finanzas" },
-  { nombre: "Mario Giovanni González López", puesto: "Dirección de Responsabilidad Social" },
-  { nombre: "Ana Elisa Celaya Montalvo", puesto: "Dirección de Comunicación" },
-  { nombre: "Daniella Vázquez Esparza", puesto: "Dirección de Vinculación" },
-  { nombre: "Leonel Francisco Bailón Sifuentes", puesto: "Dirección de Educación" },
+  { nombre: "Juan Antonio Rodríguez Reyna", puesto: "Presidencia", foto: "/images/integrantes/juan-rodriguez.jpg" },
+  { nombre: "Iván Gabriel Espinosa García", puesto: "Vicepresidencia", foto: "/images/integrantes/ivan-espinosa.jpg" },
+  { nombre: "Armando Javier Flores Salazar", puesto: "Dirección de Proyectos", foto: "/images/integrantes/armando-flores.jpg" },
+  { nombre: "Mariano Guerrero Flores", puesto: "Dirección de Finanzas", foto: "/images/integrantes/mariano-guerrero.jpg" },
+  { nombre: "Mario Giovanni González López", puesto: "Dirección de Responsabilidad Social", foto: "/images/integrantes/mario-gonzalez.jpg" },
+  { nombre: "Ana Elisa Celaya Montalvo", puesto: "Dirección de Comunicación", foto: "/images/integrantes/ana-celaya.jpg" },
+  { nombre: "Daniella Vázquez Esparza", puesto: "Dirección de Vinculación", foto: "/images/integrantes/daniella-vazquez.jpg" },
+  { nombre: "Leonel Francisco Bailón Sifuentes", puesto: "Dirección de Educación", foto: "/images/integrantes/leonel-bailon.jpg" },
 ];
 
 /* Gestiones anteriores, preservadas íntegras. */
@@ -63,14 +65,23 @@ const iniciales = (nombre: string) =>
     .map((n) => n[0])
     .join("");
 
-/* Tarjeta de integrante. El avatar con iniciales es un marcador de posición:
-   se sustituye por la fotografía de cada integrante cuando esté disponible. */
+/* Tarjeta de integrante. Si no hay fotografía, se muestra un avatar con iniciales. */
 function MemberCard({ integrante }: { integrante: Integrante }) {
   return (
     <div className="flex flex-col items-center text-center gap-3 h-full bg-white border border-linea rounded-lg px-4 py-7">
-      <div className="w-20 h-20 rounded-full bg-azul-claro border border-linea flex items-center justify-center">
-        <span className="text-azul-oscuro font-bold text-xl">{iniciales(integrante.nombre)}</span>
-      </div>
+      {integrante.foto ? (
+        <Image
+          src={integrante.foto}
+          alt={`${integrante.nombre}, ${integrante.puesto} de SEITC`}
+          width={96}
+          height={96}
+          className="w-24 h-24 rounded-full object-cover border border-linea"
+        />
+      ) : (
+        <div className="w-24 h-24 rounded-full bg-azul-claro border border-linea flex items-center justify-center">
+          <span className="text-azul-oscuro font-bold text-xl">{iniciales(integrante.nombre)}</span>
+        </div>
+      )}
       <div>
         <p className="font-bold text-tinta text-sm leading-snug">{integrante.nombre}</p>
         <p className="text-xs text-texto-suave mt-1.5 leading-relaxed">{integrante.puesto}</p>
