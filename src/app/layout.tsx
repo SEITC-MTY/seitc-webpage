@@ -51,8 +51,10 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     images: [
       {
-        url: "/images/Toma-Protesta.jpeg",
-        alt: "Mesa directiva de SEITC en la toma de protesta",
+        url: "/images/integrantes/mesa-directiva-2026-2027.jpg",
+        width: 1800,
+        height: 1200,
+        alt: "Mesa directiva de SEITC, gestión 2026 a 2027, con Armando Javier Flores Salazar, Director de Proyectos",
       },
     ],
   },
@@ -60,7 +62,14 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "SEITC | Sociedad de Estudiantes de ITC, Tec de Monterrey",
     description: SITE_DESCRIPTION,
-    images: ["/images/Toma-Protesta.jpeg"],
+    images: ["/images/integrantes/mesa-directiva-2026-2027.jpg"],
+  },
+  /* Señales geográficas: Campus Monterrey, Nuevo León, México. */
+  other: {
+    "geo.region": "MX-NLE",
+    "geo.placename": "Monterrey, Nuevo León",
+    "geo.position": "25.6514;-100.2895",
+    ICBM: "25.6514, -100.2895",
   },
   robots: {
     index: true,
@@ -91,6 +100,26 @@ const structuredData = {
       url: SITE_URL,
       logo: `${SITE_URL}/images/Logo128x128.png`,
       description: SITE_DESCRIPTION,
+      image: `${SITE_URL}/images/integrantes/mesa-directiva-2026-2027.jpg`,
+      parentOrganization: {
+        "@type": "CollegeOrUniversity",
+        name: "Tecnológico de Monterrey",
+        url: "https://tec.mx",
+      },
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Av. Eugenio Garza Sada 2501 Sur",
+        addressLocality: "Monterrey",
+        addressRegion: "Nuevo León",
+        postalCode: "64849",
+        addressCountry: "MX",
+      },
+      location: {
+        "@type": "Place",
+        name: "Tecnológico de Monterrey, Campus Monterrey",
+        geo: { "@type": "GeoCoordinates", latitude: 25.6514, longitude: -100.2895 },
+      },
+      areaServed: { "@type": "City", name: "Monterrey, Nuevo León, México" },
       sameAs: [
         "https://www.facebook.com/share/1D97vBEgLj/?mibextid=wwXIfr",
         "https://www.tiktok.com/@seitc.mty",
@@ -105,6 +134,16 @@ const structuredData = {
           "@id": `${SITE_URL}/#armando-flores`,
           name: "Armando Javier Flores Salazar",
           jobTitle: "Director de Proyectos",
+          description:
+            "Director de Proyectos de SEITC, gestión 2026-2027, estudiante de Ingeniería en Tecnologías Computacionales en el Tec de Monterrey, Campus Monterrey.",
+          image: {
+            "@type": "ImageObject",
+            url: `${SITE_URL}/images/integrantes/armando-flores-800.jpg`,
+            width: 800,
+            height: 800,
+            caption: "Armando Javier Flores Salazar, Director de Proyectos de SEITC",
+          },
+          worksFor: { "@id": `${SITE_URL}/#organizacion` },
           url: "https://auctorum.com.mx/about",
           sameAs: ["https://auctorum.com.mx", "https://github.com/cocopsn"],
         },
