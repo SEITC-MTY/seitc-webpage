@@ -5,11 +5,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
-const WHATSAPP_URL = 'https://chat.whatsapp.com/Ejj8hsLdqlXAuHBHQ9bJVG';
-
 const navLinks = [
   { name: 'Inicio', href: '/' },
   { name: 'Eventos', href: '/eventos' },
+  { name: 'Galería', href: '/galeria' },
   { name: 'Integrantes', href: '/integrantes' },
 ];
 
@@ -54,15 +53,6 @@ const Navbar = () => {
                 </Link>
               );
             })}
-
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-seitc font-semibold text-sm px-5 py-2.5 rounded-md"
-            >
-              Únete a SEITC
-            </a>
           </div>
 
           {/* Botón menú móvil */}
@@ -98,15 +88,6 @@ const Navbar = () => {
                 </Link>
               );
             })}
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setIsMenuOpen(false)}
-              className="btn-seitc mt-4 text-center font-semibold px-6 py-3 rounded-md"
-            >
-              Únete a SEITC
-            </a>
           </div>
         </div>
       )}

@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-const WHATSAPP_URL = 'https://chat.whatsapp.com/Ejj8hsLdqlXAuHBHQ9bJVG';
 
 export default function Hero() {
   return (
@@ -22,14 +21,6 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 mt-9">
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-seitc inline-flex items-center justify-center font-semibold px-7 py-3.5 rounded-md"
-              >
-                Únete a SEITC
-              </a>
               <Link
                 href="/eventos"
                 className="inline-flex items-center justify-center border border-linea text-navy-850 font-semibold px-7 py-3.5 rounded-md hover:border-azul hover:text-azul-oscuro transition-colors duration-150"
@@ -39,12 +30,12 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Fotografía de la mesa */}
+          {/* Fotografía de la mesa directiva vigente */}
           <figure className="rounded-lg overflow-hidden border border-linea shadow-sm">
             <div className="relative aspect-[4/3]">
               <Image
-                src="/images/Toma-Protesta.jpeg"
-                alt="Mesa directiva de SEITC en la toma de protesta"
+                src="/images/integrantes/mesa-directiva-2026-2027.jpg"
+                alt="Mesa directiva de SEITC, gestión 2026 a 2027"
                 fill
                 sizes="(min-width: 1024px) 45vw, 100vw"
                 priority

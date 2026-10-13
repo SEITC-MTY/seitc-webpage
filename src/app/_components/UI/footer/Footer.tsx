@@ -16,6 +16,7 @@ const Footer = () => {
   const quickLinks = [
     { name: 'Qué es SEITC', href: '/#que-es-seitc' },
     { name: 'Eventos', href: '/eventos' },
+    { name: 'Galería', href: '/galeria' },
     { name: 'Integrantes', href: '/integrantes' },
   ];
 
@@ -64,16 +65,17 @@ const Footer = () => {
         <div className="space-y-4">
           <h3 className="text-sm font-bold uppercase tracking-wide text-white/90">Únete</h3>
           <p className="text-sm text-white/70 leading-relaxed">
-            Únete al grupo de WhatsApp de la comunidad ITC del Campus Monterrey.
+            Únete al{' '}
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4 hover:text-white transition-colors duration-150"
+            >
+              grupo de WhatsApp
+            </a>{' '}
+            de la comunidad ITC del Campus Monterrey.
           </p>
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-seitc inline-block font-semibold text-sm px-6 py-3 rounded-md"
-          >
-            Únete a SEITC
-          </a>
         </div>
       </div>
 

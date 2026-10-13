@@ -18,15 +18,19 @@ export const getTipoLabel = (tipo: EventoTipo | string): string => {
 };
 
 /**
- * Fotografía ilustrativa para eventos PRÓXIMOS.
- * Imágenes de Pixabay (Licencia de Contenido de Pixabay: uso libre, sin
+ * Fotografía de eventos PRÓXIMOS. Bienvenida y LeetCode usan fotos reales de
+ * SEITC (semana de bienvenida, agosto 2026); el resto, imágenes de Pixabay (Licencia de Contenido de Pixabay: uso libre, sin
  * atribución requerida). Fuentes en public/images/eventos/_manifest.json.
  */
 export const getEventoFoto = (evento: Evento): string | null => {
     switch (evento.id) {
-        case 'bienvenida-ad26':                  return '/images/eventos/bienvenida.jpg';
+        case 'bienvenida-ad26':                  return '/images/galeria-ad26/bienvenida-equipo.jpg';
         case 'portfolio-ai-ad26':                return '/images/eventos/taller.jpg';
-        case 'leetcode-dsa-ad26':                return '/images/eventos/leetcode.jpg';
+        case 'leetcode-dsa-ad26':                return '/images/galeria-ad26/leetcode-sesion.jpg';
+        case 'explora-ingenierias-ad26':         return '/images/galeria/explora/02.jpg';
+        case 'finish-it-friday-1-ad26':          return '/images/galeria/finish-it-friday/01.jpg';
+        case 'bloomberg-workshop-ad26':          return '/images/galeria/bloomberg/08.jpg';
+        case 'duolingo-ad26':                    return '/images/galeria/duolingo/01.jpg';
         case 'prep-to-intern-1-ad26':            return '/images/eventos/charla.jpg';
         case 'prep-to-intern-2-ad26':            return '/images/eventos/panel.jpg';
         case 'interview-prep-ad26':              return '/images/eventos/interview.jpg';

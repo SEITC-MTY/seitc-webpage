@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import Link from 'next/link';
 
 import type { Evento, Semestre } from './types';
 import { eventos, SEMESTRE_LABELS } from './eventsData';
@@ -16,6 +17,10 @@ export default function Events() {
     const [selectedSemestre, setSelectedSemestre] = useState<Semestre>('AD26');
 
     const eventosFiltrados = eventos.filter((e) => e.semestre === selectedSemestre);
+    const porRealizar = eventosFiltrados.filter((e) => e.estado === 'proximo');
+    const realizados = eventosFiltrados
+        .filter((e) => e.estado === 'pasado')
+        .sort((a, b) => (b.fechaISO ?? '').localeCompare(a.fechaISO ?? ''));
 
     return (
         <>
@@ -55,25 +60,58 @@ export default function Events() {
                         })}
                     </div>
 
-                    {/* Aviso del semestre próximo */}
-                    {selectedSemestre === 'AD26' && (
-                        <p className="text-sm text-texto-suave bg-superficie border border-linea rounded-md px-4 py-3 mt-6 mb-4">
-                            Las fechas se confirman en junta de mesa. Este calendario se
-                            actualiza conforme cada evento queda confirmado.
-                        </p>
-                    )}
                     {selectedSemestre === 'AD25' && <div className="mt-6 mb-4" />}
 
                     {/* Agenda */}
-                    <div>
-                        {eventosFiltrados.map((evento) => (
-                            <AgendaRow
-                                key={evento.id}
-                                evento={evento}
-                                onClick={() => setSelectedEvento(evento)}
-                            />
-                        ))}
-                    </div>
+                    {selectedSemestre === 'AD25' ? (
+                        <div>
+                            {eventosFiltrados.map((evento) => (
+                                <AgendaRow
+                                    key={evento.id}
+                                    evento={evento}
+                                    onClick={() => setSelectedEvento(evento)}
+                                />
+                            ))}
+                        </div>
+                    ) : (
+                        <>
+                            {porRealizar.length > 0 && (
+                                <div className="mt-8">
+                                    <h2 className="text-xl font-extrabold text-tinta">Próximos</h2>
+                                    <p className="text-sm text-texto-suave mt-1 mb-2">
+                                        Las fechas se confirman en junta de mesa y este calendario se actualiza
+                                        conforme cada evento queda confirmado.
+                                    </p>
+                                    {porRealizar.map((evento) => (
+                                        <AgendaRow
+                                            key={evento.id}
+                                            evento={evento}
+                                            onClick={() => setSelectedEvento(evento)}
+                                        />
+                                    ))}
+                                </div>
+                            )}
+                            {realizados.length > 0 && (
+                                <div className="mt-12">
+                                    <h2 className="text-xl font-extrabold text-tinta">Ya realizados</h2>
+                                    <p className="text-sm text-texto-suave mt-1 mb-2">
+                                        Lo que ha pasado este semestre. Las fotos están en la{' '}
+                                        <Link href="/galeria" className="font-semibold text-azul-oscuro underline underline-offset-4">
+                                            galería
+                                        </Link>
+                                        .
+                                    </p>
+                                    {realizados.map((evento) => (
+                                        <AgendaRow
+                                            key={evento.id}
+                                            evento={evento}
+                                            onClick={() => setSelectedEvento(evento)}
+                                        />
+                                    ))}
+                                </div>
+                            )}
+                        </>
+                    )}
                 </div>
             </section>
 
